@@ -1,0 +1,55 @@
+# Maintainer: FooTearth <footearth@gmail.com>
+
+pkgname=wink
+pkgver=1.5
+pkgrel=1
+pkedesc="Wink is a Tutorial and Presentation creation software"
+arch=('i686')
+url="http://www.debugmode.com/wink/"
+# license=('')
+# depends=('')
+# install=
+source=(http://yet.another.linux-nerd.com/wink/download/wink15.tar.gz)
+md5sums=('be2d80bcf3fdfe1a403674d789aed9db')
+
+build(){
+	install -d $srcdir/$pkgname
+	tar xvf $srcdir/installdata.tar.gz -C $srcdir/$pkgname
+	cd $srcdir/$pkgname
+
+	{
+		echo "#!/bin/sh"
+		echo ""
+		echo "for lang in da_DK de_DE en_GB es_ES fr_FR it_IT ja_JP pt_BR sr_YU zh_CN zh_TW"
+		echo "do"
+		echo "	if [ \"\`echo \$LANG | cut -c 1-5\`\" = \"\$lang\" ]"
+		echo "	then"
+		echo "		Lang=\$lang"
+		echo "	fi"
+		echo "done"
+		echo ""
+		echo "if \[ \"\$Lang\" = \"\" \]"
+		echo "then"
+		echo "	Lang=en_GB"
+		echo "fi"
+		echo ""
+		echo "export LANG=\$Lang"
+		echo ""
+		echo "exec /usr/share/wink/wink "${@}""
+	} > startwink.sh
+
+	install -d $pkgdir/usr/{bin,share}
+	install -d $pkgdir/usr/share/$pkgname
+	install -d $pkgdir/usr/share/license/$pkgname
+
+	install -Dm755 $srcdir/$pkgname/wink $pkgdir/usr/share/$pkgname
+	install -Dm755 $srcdir/$pkgname/startwink.sh $pkgdir/usr/bin/wink
+	install -Dm644 $srcdir/$pkgname/{changelog.txt,readme.txt} $pkgdir/usr/share/$pkgname
+
+	for dirname in Backgrounds Buttons Callouts Docs FlashControlBars FlashPreloaders Resources Samples Templates
+	do
+		cp -R $srcdir/$pkgname/$dirname $pkgdir/usr/share/$pkgname
+	done
+
+	install -Dm644 $srcdir/$pkgname/license.txt $pkgdir/usr/share/license/$pkgname
+}
