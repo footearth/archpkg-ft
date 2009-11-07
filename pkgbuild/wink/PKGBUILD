@@ -28,7 +28,7 @@ build(){
 		echo "	fi"
 		echo "done"
 		echo ""
-		echo "if \[ \"\$Lang\" = \"\" \]"
+		echo "if [ \"\$Lang\" = \"\" ]"
 		echo "then"
 		echo "	Lang=en_GB"
 		echo "fi"
