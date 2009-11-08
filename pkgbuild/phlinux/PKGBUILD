@@ -8,10 +8,10 @@ arch=('i686')
 url="http://www.oray.cn"
 # license=('')
 # depends=('')
-# install=
 backup=(etc/phlinux.conf)
 source=(http://www.oray.cn/peanuthull/download/phlinux10all.tar.gz)
 md5sums=('4c7941f7eeb16f17647ef19f85f37dfa')
+install=phlinux.install
 
 build(){
 	tar xvf $srcdir/${pkgname}10all/${pkgname}_package/${pkgname}-${pkgver}-install.ubuntu.8.04.tar.gz -C $srcdir

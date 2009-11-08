@@ -1,12 +1,8 @@
 post_install() {
-echo << EOM 
+cat << EOM 
 
-==> Start to Peanuthull linux client Sttus report
+==> Start to Peanuthull linux client Sttus report:
 ==> by open the url: http://localhost:6160
 
 EOM
 }
-
-op=$1
-shift
-[ "$(type -t "$op")" = "function" ] && $op "$@"
