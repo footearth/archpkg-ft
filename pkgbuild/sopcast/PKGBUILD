@@ -4,7 +4,7 @@
 
 pkgname=sopcast
 pkgver=3.0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="The Streaming Direct Broadcast System based on P2P"
 arch=('i686') # Binary app, doesn't work on x86_64
 url="http://www.sopcast.org"
