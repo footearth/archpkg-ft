@@ -15,8 +15,8 @@ md5sums=('5d1fbdd6d39a0d4c33a8e8500d43361f' 'cd4c2f7795918cdb02550a6e0ee939a4')
 install=sopcast.install
 
 build()  {
-  install -D -m755 sp-auth/sp-sc-auth $pkgdir/usr/bin/sp-sc-auth
+  install -Dm755 sp-auth/sp-sc-auth $pkgdir/usr/bin/sp-sc-auth
   ln -s sp-sc-auth $pkgdir/usr/bin/sopcast
   ln -s sp-sc-auth $pkgdir/usr/bin/sp-sc
-  install -D license $pkgdir/usr/share/licenses/sopcast/COPYING
+  install -Dm644 license $pkgdir/usr/share/licenses/sopcast/COPYING
 }
