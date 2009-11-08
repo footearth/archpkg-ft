@@ -51,5 +51,5 @@ build(){
 		cp -R $srcdir/$pkgname/$dirname $pkgdir/usr/share/$pkgname
 	done
 
-	install -Dm644 $srcdir/$pkgname/license.txt $pkgdir/usr/share/license/$pkgname
+	install -Dm644 $srcdir/$pkgname/license.txt $pkgdir/usr/share/license/$pkgname/COPYING
 }
