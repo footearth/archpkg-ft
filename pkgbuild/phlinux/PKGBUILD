@@ -3,7 +3,7 @@
 pkgname=phlinux
 pkgver=1.1
 pkgrel=1
-pkedesc="花生壳是完全免费的桌面式域名管理和动态域名解析（DDNS）等功能为一体的客户端软件"
+pkedesc="phlinux is a free DDNS (Dynamic DNS) client software"
 arch=('i686')
 url="http://www.oray.cn"
 # license=('')
