@@ -1,5 +1,5 @@
 post_install() {
-cat << EOM 
+echo << EOM 
 
 ==> Start to Peanuthull linux client Sttus report
 ==> by open the url: http://localhost:6160
