@@ -2,10 +2,11 @@ post_install() {
 cat << EOM 
 
 ==> A simple example of sp-sc command line:
-==> ./sp-sc sop://broker.sopcast.com:3912/6098 3908 8908 > /dev/null &
-==> Start to transfer channel 6098, and you can play it on 8908 with VLC or mplayer
+==> ./sp-sc sop://url 8908 8800 2>&1 /dev/null &
+==> Start to transfer channel, and you can play it on 8908 with VLC, mplayer or gnome-mplayer
 ==> by open the url: http://localhost:8908/tv.asf
-==> or use mplayer: mplayer http://localhost:8800 &
+==> or use mplayer: mplayer http://localhost:8800 < /dev/null > /dev/null 2>&1 &
+==> or use gnome-mplayer: gnome-mplayer http://localhost:8800 &
 
 EOM
 }
