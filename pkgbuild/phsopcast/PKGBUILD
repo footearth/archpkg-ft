@@ -1,0 +1,18 @@
+# Maintainer: FooTearth <footearth@gmail.com>
+
+pkgname=phsopcast
+pkgver=0.1
+pkgrel=1
+pkedesc="phsopcast is a Tutorial and Presentation creation software"
+arch=('i686')
+url="http://archpkg-ft.googlecode.com"
+license=('GPL3')
+depends=('sopcast')
+# install=
+source=(http://archpkg-ft.googlecode.com/svn/backup/phsopcast.tar.gz)
+md5sums=('a96a26ecbd5c514a7e1438a93e816076')
+
+build() {
+	install -d $pkgdir/bin
+	install -Dm755 $srcdir/$pkgname/${pkgname}.sh $pkgdir/bin/$pkgname
+}
