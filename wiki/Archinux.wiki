@@ -1,11 +1,11 @@
 ﻿
 == Arch Linux ==
 
-	* 包管理工具 [#Pacman pacman] [http://www.archlinux.org/pacman/ man pacman]
-	* ABS [http://aur.archlinux.org/ AUR] PKGBUILD
-		* [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs.html Archlinux 的灵魂(1)]
-		* [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-2.html Archlinux 的灵魂(2)]
-		* [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-3.html Archlinux 的灵魂(3)]
+	* Archlinux 的灵魂 [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs.html (1)] [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-2.html (2)] [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-3.html (3)]
+		# [#Pacman pacman]--包管理工具 [http://www.archlinux.org/pacman/ man pacman]
+		# [#ABS ABS]
+		# [http://aur.archlinux.org/ AUR]
+		# [#PKGBUILD PKGBUILD]
 	* 下载 [ftp://ftp.archlinux.org/ 官方FTP地址]
 	* 资源 [http://wiki.archlinux.org/index.php/Category:%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87 中文Wiki] [http://www.linuxsir.org/bbs/forumdisplay.php?s=3b9489c8a372a90c0e52f0cdbfe23a99&f=96 LinuxSir 讨论区]
 
@@ -66,5 +66,9 @@
 	* asroot
 
 ==== ABS ====
+{{{
+	sudo pacman -S abs
+	sudo abs
+}}}
 
 ==== PKGBUILD ====
