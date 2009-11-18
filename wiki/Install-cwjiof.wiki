@@ -1,4 +1,4 @@
-﻿== 个人的Arch Linux 安装笔记和步骤简述---20080126更新 ==
+﻿== 个人的Arch Linux 安装笔记和步骤简述----20080126更新 ==
 [http://www.linuxsir.org/bbs/thread317982.html <转自 Linuxsir>] 
 
 Arch这东西确实好用，有点像Ubuntu（因为有Pacman系统），又有点像FreeBSD (安装界面简洁，还有ports一样的ABS系统)。只要上了手，再想甩开就难了。
