@@ -1,0 +1,1164 @@
+﻿== 个人的Arch Linux 安装笔记和步骤简述---20080126更新 ==
+[http://www.linuxsir.org/bbs/thread317982.html <转自 Linuxsir>] 
+
+Arch这东西确实好用，有点像Ubuntu（因为有Pacman系统），又有点像FreeBSD (安装界面简洁，还有ports一样的ABS系统)。只要上了手，再想甩开就难了。
+
+当然了，我也见到不少人更喜欢用Gentoo或LFS，针对这个情况……
+我只能说，他们的机器性能实在太好了，呵呵。
+
+关于Archlinux安装使用的基础知识参见于：
+http://wiki.archlinux.org/index.php/Official_Arch_Linux_Install_Guide
+
+本文主要补充了桌面应用的部分，希望能对新手起到一些帮助。对FreeBSD和Ubuntu的桌面应用也可能有一点参考作用吧。
+
+另外，还必须赞叹一下ArchLinux的Wiki，做得比较全面，虽然不够Gentoo的Wiki全面，但也真是一级棒的！
+如果有什么东西在http://wiki.archlinux.org 上介绍的不全面，或根本没有，建议访问：
+http://gentoo-wiki.com/Main_Page （英文）
+http://wiki.gentoo.tw/mediawiki/index.php/Main_Page （正体中文）
+
+代码:
+{{{
+1 Installing Arch Linux 
+
+* 1.1 Pre-Installation 
+
+是i686 架构吗（Pentium II or AMD K6-2以上）？安装方式CD? FTP？ 
+
+* 1.2 Acquiring Arch Linux 
+
+从这里寻找速度最快的镜像： 
+http://wiki.archlinux.org/index.php/Mirror 
+
+* 1.3 Preparing Installation Media 
+
+MD5 校验，烧录。 
+
+* 1.4 Using the CD-ROM 
+
+设置好光驱启动。 
+
+* 1.5 Common Installation Procedure 
+o 1.5.1 Loading a non-US Keymap 
+
+用km 工具选择非英语键盘 
+
+o 1.5.2 Running Setup 
+
+# /archlinux/setup 
+
+o 1.5.3 Configure Network (FTP Install only) 
+
+仅适用于FTP 安装方式，CD 安装没有必要配置好网络。 
+
+o 1.5.4 Prepare Hard Drive 
+
+给磁盘分好区，root分区(/)放在主分区比较好（放到逻辑分区也可以），
+如果有 Windows 系统，那它也要占据一个主分区。个人的250G硬盘是这样分区的：
+
+# cfdisk 
+
+sda1          /boot        150M             xfs
+sda2          Windows      18G              ntfs
+sda3          FreeBSD      32G              ufs
+sda5          /            600M             xfs
+sda6          SWAP         2xRam            xfs  (SWAP分区的大小推荐为内存大小的2倍)
+sda7          /var         20G              xfs
+sda8          /tmp         5G               xfs
+sda9          /opt         10G              xfs
+sda10         /usr         20G              xfs
+sda11         /home        105G              xfs
+sda12         Files        不大于32G        fat32
+
+如果需要加密磁盘，并启用开机验证，推荐使用luks ： 
+通常加密 root 分区和 /home 分区 
+# modprobe dm-crypt 
+# modprobe aes-i586 
+# cryptsetup –y luksFormat /dev/sda3 
+输入密码，确认。 
+# cryptsetup –y luksFormat /dev/sda10 
+输入密码，确认。 
+# cryptsetup luksOpen /dev/sda3 root 
+解开root 分区，并建立一个映射：/dev/mapping/root 
+# cryptsetup luksOpen /dev/sda10 home 
+解开 /home 分区，并建立一个映射：/dev/mapping/home 
+
+参看：http://wiki.archlinux.org/index.php/LUKS_Encrypted_Root
+
+o 1.5.5 Partition Hard Drives 
+
+可以跳过了。 
+
+o 1.5.6 Set Filesystem Mountpoints 
+
+如果用luks 加密了分区，那么 / 分区需要挂载到：/dev/mapping/root； 
+/home 需要挂载到：/dev/mapping/home.
+同时选择一个合适的文件系统（JFS，XFS，Reiserfs...）。
+
+o 1.5.7 Select Packages 
+
+至少选择 Base 安装。如果需要一个可编译环境，要选上devel和lib；如果需要ADSL拨号
+
+或WiFi支持，要选上support。
+确定后会看到所有将要安装的包，可以在这里去掉一些暂时不想安装的包。要是不清楚就
+不管了，几个M的大小而已。
+
+o 1.5.8 Install Packages 
+
+只要烧录的光碟不是太差，基本上都能正常安装的。
+
+o 1.5.9 Configure System 
+
+配置系统是必须和关键的，应当允许hwdetect script自动检测硬件，并生成相应配置。 
+根据启动时的实际情况选择是否需要对RAID，LVM2，和encrypted volumes的支持，以及
+
+其它必要的支持。 
+选择熟悉的编辑器后，对 /etc 下的生成的配置文件作适当的修正： 
+rc.conf：设置时区为Asia/Hong_Kong，检查eth0的配置是合适
+mkinitcpio.conf：在最后一行的HOOKS 中去除不必要的支持 
+hosts ：设置主机名和域名 
+locale.gen：设置本机要支持的locale （zh_CN.utf8,zh_CN.gbk，or zh_TW.utf8） 
+root PassWord：为root 设置管理密码 
+pacman Mirrors：设置安装源。找一个高速镜像站点，比如： 
+http://mirrors.lcuc.org.cn/archlinux/ ；http://ftp.archlinux.org/ ； 
+http://ftp.belnet.be/packages/archlinux/ ；http://ftp.gigabit.nu/； 
+http://archlinux.puzzle.ch ；http://mirror.cs.vt.edu/pub/ArchLinux/ ； 
+http://ftp.heanet.ie/mirrors/ftp.archlinux.org/； 
+http://distro.ibiblio.org/pub/linux/distributions/archlinux/ 
+
+o 1.5.10 Install Kernel 
+略
+
+o 1.5.11 Install Bootloader 
+
+推荐GRUB。配置好menu.lst。 
+如果root 分区用luks 加密过了，那么要把menu.lst 修正为： 
+# (0) Arch Linux 
+title Arch Linux 
+root (hd0,0) 
+kernel /vmlinuz26 root=/dev/sda3 ro 
+initrd /kernel26.img 
+注意：Bootloader 需要安装到MBR（即 sda 下），而不是 /boot 所在的分区（sda1）。 
+
+o 1.5.12 Exit Install 
+
+退出安装程式后，取出安装光盘。 
+# head -n 300 /dev/urandom | tail -n 256 >/mnt/etc/home.key 
+# cryptsetup luksAddKey /dev/sda10 /mnt/etc/home.key 
+输入密码，确认。 
+# echo home /dev/sda10 /etc/home.key >>/mnt/etc/crypttab 
+开机时，用home.key 解开 /dev/sda10 
+# sed -i /swap/d /mnt/etc/fstab   （删除fstab 文件中含有swap 的一栏） 
+#echo swap /dev/sda2 /dev/urandom "-c   aes-cbc-essiv:sha256 -h sha256 -s 256" >>/mnt/etc/crypttab 
+# echo "mkswap /dev/mapper/swap" >>/mnt/etc/rc.local 
+以上两个命令是设置swap 加密分区。 
+另外直接在/etc/crypttab 中加入如下内容也起相同作用： 
+swap /dev/sda2  SWAP -c aes-cbc-essiv:sha256 -h sha256 -s 256 
+# reboot 
+
+2  基础配置
+
+* 2.1  Internet Access 
+
+如果是局域网，视讯宽等无需拨号的网络环境，只需要在/etc/rc.conf中设置好：
+eth0="dhcp"
+重启电脑后，即可正常上网了。
+
+如果是用PPPOE协议拨号上网（如ADSL），需安装rp-pppoe安装包，然后： 
+# pppoe-setup 
+# /etc/rc.d/adsl start 
+# /etc/rc.d/adsl stop 
+或者，使用更好的ppp 安装包（参照WiKi ） 
+
+* 2.2  更新安装包列表 
+
+# pacman –Syu 
+更新安装包列表，并升级已安装的包和内核，比自己make world要快多了
+# reboot
+# pacman-optimize  
+这是优化pacman系统，如果安装时仅选择了base安装，那么优化可能不会成功，因为缺少
+diffutils安装包(它在devel里面)，安装它就可以了：
+# pacman -S diffutils
+
+安装AUR 工具（建议安装，好软件多多）：
+# vi /etc/pacman.conf, 加入: 
+[archlinuxfr] 
+Server = http://repo.archlinux.fr/i686/ 
+# pacman -Sy yaourt   (安装一个Pacman前端，如果碰到服务器调整，那就装不了啦）     
+# yaourt -S tupac     (速度更快的Pacman前端，依赖于yaourt)
+# tupac -S aurvote   
+可以通过aurvote对喜欢的AUR软件投票，如果票数够多了，该软件就会被加入Community。
+用“aurvote -h”来查看使用帮助。
+
+如果要对yaourt和tupac这两个软件投票，可以这样做：
+(1) 到 http://aur.archlinux.org/account.php 注册一个帐号
+(2) vi ~/.aruvote，加入
+user=YourName
+pass=YourPassWord
+(3) aurvote -v yaourt tupac
+
+* 2.3  安装多线程多协议的下载工具aria2 
+
+# pacman -S aria2 
+# echo "XferCommand = /usr/bin/aria2c –s 3 %u" >>/etc/pacman.conf 
+用aria2替换默认的wget来安装软件，如果带宽足够大，就不需要用aria2了。
+
+* 2.4 根据个人习惯安装其它Shell（如zsh，ksh），当然使用默认的Bash也很好
+$ sudo pacman -S zsh
+关于ZSH的介绍，可以参照Wiki:
+http://wiki.archlinux.org/index.php/Zsh
+可从中获取配置好的 .zshrc 文件，放入$HOME中。
+$ chsh -s /bin/zsh
+$ source ~/.zshrc
+
+* 2.5  安装sudo，用普通用户进入系统 
+
+创建一个账户： 
+# useradd –mG users,audio,optical,storage,wheel -s /bin/zsh yourname 
+创建一个限制用户，有声音支持，有HAL 支持，能切换到root 权限 
+# passwd yourname  (如果还没有为root创建密码，要先 #passwd root)
+# cd /home/YOUNAME/ && cp ~/.zshrc ./ && chown YOUENAME ./.zshrc
+
+# pacman -S sudo 
+# vi /etc/sudoers 
+加入：yourname ALL=(ALL) NOPASSWD: SETENV: ALL 
+或直接对用户组作出相应设置。 
+如果主机上会有多个终端同时在用，还要加入"visudo"到/etc/sudoers
+
+sudo 命令补全（注意，仅适用于Bash）： 
+# pacman -S bash-completion 
+# echo source /etc/bash_completion >>/etc/profile 
+# source /etc/profile   （或exit, 用普通用户重登录） 
+
+* 2.6 开启控制台鼠标 (gpm 支持) ，方便控制台下浏览网页
+
+在控制台下浏览网页的工具有：elinks(英文网页), w3m（在CCE下可浏览中文网页）：
+$ sudo pacman elinks w3m cce
+用elinks等工具，在控制台下浏览网页，如果没有鼠标支持，实在是很郁闷的事情：
+$ sudo pacman -S gpm 
+$ sudo vi /etc/conf.d/gpm, 加入: 
+GPM_ARGS="-m /dev/misc/psaux -t ps2"   (PS/2) or 
+GPM_ARGS="-m /dev/input/mice -t imps2"  (USB) 
+$ sudo gpm -m /dev/input/psaux -t ps2   (PS/2) or 
+$ sudo gpm -m /dev/input/mice -t imps2"  (USB)
+如果已经正常工作，把gpm 加到rc.conf中的DAEMONS 数组中，让它开机自动运行。
+
+* 2.7 Post Installation Tips
+
+(1) Colorize your PS1 and Console 
+
+编辑SHELL的配置文件（如 ~/.bashrc），加入：
+
+export LS_COLORS='no=00:fi=00:di=01;37;44:ln=01;36:pi=40;33:so=01;35: \
+do=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=01;32: \
+*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32: \
+*.csh=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31: \
+*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31: \
+*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.rar=01;31:*.ace=01;31: \
+*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35: \
+*.gif=01;35:*.bmp=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35: \
+*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mng=01;35:*.xcf=01;35:*.pcx=01;35: \
+*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.avi=01;35:*.mkv=01;35:*.ogm=01;35: \
+*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.mov=01;35:*.qt=01;35:*.wmv=01;35: \
+*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.fli=01;35:*.gl=01;35: \
+*.dl=01;35:*.pdf=00;32:*.ps=00;32:*.txt=00;32:*.patch=00;32:*.diff=00;32: \
+*.log=00;32:*.tex=00;32:*.doc=00;32:*.mp3=01;32:*.wav=01;32:*.mid=01;32: \
+*.midi=01;32:*.au=01;32:*.ogg=01;32:*.flac=01;32:*.aac=01;32:';
+
+关于提示符的修改，参看一下：http://bbs.linuxsir.org/showthread.php?t=223.44
+
+(2) 实现彩色版的 Manpages 
+
+$ sudo pacman -S most 
+$ vi /etc/man.conf file， change the PAGER and BROWSER variable to: 
+PAGER   /usr/bin/most -s 
+BROWSER  /usr/bin/most –s 
+$ vi ~/.mostrc，add: 
+color normal brightwhite black
+color status yellow blue
+color underline white lightblue 
+color overstrike brightcyan black 
+
+不过用most是有一些不便之处的，这时可以试试下面的方法，真的挺不错：
+
+1. 在你的主目录创建 .terminfo 目录，并转到该目录：
+mkdir ~/.terminfo/ && cd ~/.terminfo
+2. 从作者网站获取 terminfo 描述文件：
+wget http://nion.modprobe.de/mostlike.txt
+3. 使用 tic 命令编译 mostlike.txt 文件（编译后可删除）：
+tic mostlike.txt
+4. 在SHELL的配置文件中定义别名：
+alias man="TERMINFO=~/.terminfo/ LESS=C TERM=mostlike PAGER=less man"
+
+现在使用 man 指令就可以读到彩色版的 Manpages 了。如果你需要修改 terminfo 文件，则可以使用 infocmp mostlike。
+
+(3) Timesaving Command-aliases 
+
+编辑SHELL的配置文件（如 ~/.bashrc），加入： 
+alias ls='ls --color=auto' 
+alias la='ls -a --color=auto' 
+alias ll='ls -aoth --color=auto'
+alias p='sudo pacman' 
+alias t='sudo tupac' 
+alias x='startx' 
+alias pq='pacman -Q |grep'
+alias pa='sudo pacman -S' 
+alias pas='sudo pacman -Ss' 
+alias pau='sudo pacman -Syu' 
+alias pay='sudo pacman -Sy' 
+alias pao=”sudo pacman-optimize” 
+alias pasch='pacman -Sl | cut -d' ' -f2 | grep ' 
+alias tp='sudo tupac -S' 
+alias tps='sudo tupac -Ss' 
+alias tpu='sudo tupac -Syu' 
+alias tpy='sudo tupac -Sy' 
+alias vi='vim' 
+alias v='sudo vim' 
+alias ps='ps ax'
+alias m='less –s'
+
+3  安装一个桌面
+
+* 3.1 xorg
+
+$ sudo pacman -S xorg
+$ sudo X –configure 
+$ sudo vi xorg.conf.new    (作出适当的修正) 
+$ X -config xorg.conf.new  (测试一下配置文件是否能正常工作，用Ctrl+Alt+Backspace退出X)
+$ cp xorg.conf.new /etc/X11/xorg.conf
+如果发现“X -configure”不能正确配置某些硬件（比如鼠标），可以试试hwd命令：
+$ sudo pacman -S hwd && sudo hwd -xa
+它会在/etc/X11/自动生成一个xorg.conf，并备份原有的文件。
+
+* 3.2 安装显卡驱动
+
+装完Xorg后，就已经有了一个通用的VESA驱动了。不过对图形加速支持得不太好。
+一般显卡的开源驱动可以用：pacman -Ss xf86-video 来搜索到。不过要想较好的支持3D
+性能，还需要使用厂商提供的驱动：
+ATI显示芯片：tupac -S catalyst ，参考http://wiki.archlinux.org/index.php/ATI
+Nvidia显示芯片可用：tupac -Ss nvidia 来搜索，并参考：http://wiki.archlinux.org/index.php/NVIDIA
+不过个人认为，对于Nvidia的显卡，最好是直接使用其官方网站上的驱动，下载地址是：
+http://www.nvidia.cn/Download/index.aspx?lang=cn
+下载最新的Linux驱动(当前是NVIDIA-Linux-x86-169.09-pkg1.run)，然后：
+$ sudo sh NVIDIA-Linux-x86-169.09-pkg1.run
+
+*3.3 安装字体
+
+$ sudo pacman –Sy ttf  ｜less  （从安装包列表中查找可用的字体包） 
+$ sudo pacman –S sdl_ttf font-bh-ttf ttf-dejavu ttf-fireflysung ttf-ms-fonts
+ 
+当前的开源字体已经相当不错了，尤其是文泉驿字体。
+安装文泉驿点阵宋体和正黑体。当前已经进入Community 了。
+$ tupac -S wqy-bitmapfont wqy-zenhei
+$ sudo vi /etc/X11/xorg.conf ，增加字体路径 
+如果没有安装 fontconfig ，就用 pacman 安装一下，然后，
+下载本文附件：fonts.conf.tar.gz ，并解压到 $HOME下：
+$ tar zxf fonts.conf.tar.gz  -C ~/
+这会在 $HOME下产生一个 .fonts.conf 文件，可以优化中文显示。
+
+如果磁盘上有Windows系统，也可以：
+$ sudo mkdir /usr/share/fonts/msfonts 
+复制一些Windows 字体到此目录下，如：msyh, simhei, simyou 
+并自行编辑.fonts.conf 文件。当然了，最好不要使用Windows字体，因为是有版权的。
+
+*3.4 安装一个顺手的整合桌面环境或窗口管理器
+
+o 3.4.1 gnome
+$ sudo pacman -S gnome  （gnome-extra是附加软件，自行选择安装）
+
+o 3.4.2 kde
+$ sudo pacman -S kde
+
+o 3.4.3 xfce + idesk
+$ sudo pacman -S xfce4 idesk (xfce4-goodies是附加软件，自行选择安装)
+
+o 3.4.4 e17 + idesk
+$ sudo pacman -S e17 idesk 
+
+o 3.4.5 fvwm + idesk
+$ sudo pacman -S fvwm idesk (如果要安装最新版本，需自行下载编译安装)
+
+o 3.4.6 openbox + rox-filer + lxpanel + idesk
+$ sudo pacman -S openbox rox lxpanel idesk
+
+o 3.4.7 windowmaker + rox-filer + *dockapp + idesk
+$ sudo pacman -S windowmaker rox lxpanel idesk
+$ pacman -Ss dock , 然后安装中意的dockapp
+
+安装上面任一桌面后，可能还要安装和启用一个顺手的登录管理器，主要有：
+XDM，GDM，KDM，Entrance, SLIM.
+如果要启用gdm，需注释掉/etc/inittab 中“x:5:respawn:/usr/bin/xdm –nodaemon” 
+这一行，另在/etc/rc.conf 中的 DAEMONS行中加入 gdm，可使开机时自动运行。
+~/.profile 文件中的命令是gdm 登录时会默认调用的。其它与之相似。
+
+如果不用登录管理器，就配置好~/.xinitrc,用"startx"命令，直接从Console下进入。
+
+参考：
+http://wiki.archlinux.org/index.php/{Gnome,Kde,Xfce,E17,Openbox,GDM,KDM,SLIM}
+http://www.fvwm.org
+http://slim.berlios.de
+http://icculus.org/openbox/index.php/Main_Page
+http://www.windowmaker.info
+http://roscidus.com
+http://idesk.sourceforge.net
+
+* 3.5 安装中文输入法（fcitx,or scim）
+
+o 3.5.1 fcitx
+$ sudo pacman -S fcitx 
+$ cat >>~/.profile <<EOF 
+> LC_CTYPE="zh_CN.utf8" 
+> export XMODIFIERS=@im=fcitx 
+> export GTK_IM_MODULE=xim 
+> export QT_IM_MODULE=xim 
+> fcitx & 
+> EOF 
+
+o 3.5.2 scim
+$ sudo pacman -S scim-tables   (或安装scim-fcitx。要用拼音，安装scim-pinying)
+$ cat >>~/.profile <<EOF 
+> LC_CTYPE="zh_CN.utf8" 
+> export XMODIFIERS=@im=SCIM
+> export GTK_IM_MODULE="scim"
+> export QT_IM_MODULE="scim"
+> scim -f socket -c socket -d
+> EOF 
+
+# cp ~/.profile ~/.xinitrc 
+# echo exec gnome-session >>~/.xinitrc  
+这是startx 调用的配置文件。用“>>”,确保了gnome-session是最后被执行的命令。 
+# startx 
+
+4  安装常用软件
+
+* 4.1 X下的虚拟终端
+
+roxterm,tilda和yakuake都是相当棒的虚拟终端。
+toxterm同gnome-terminal相似，却要小巧得多。
+Tilda 可用于 GNOME、Xfce 桌面，而 Yakuake 主要用于 KDE 桌面。它们都具有热键控制，
+桌面嵌入，背景透明，动画效果，标签页功能和可定制性。
+个人偏好tilda，直接用Pacman命令安装：
+# pacman -S tilda （不过最近Gnome的MetaCity似乎对Tilda不太友好，老是找不到焦点）
+
+* 4.2 网络浏览
+
+使用经过优化的更小巧快速的 swiftfox 来代替Firefox。
+如果安装了elinks，可以先：
+$ elinks http://getswift.com/installer.htm
+看看有哪些版本可以下载，结合电脑处理器的类型下载，如Pentium 4的CPU：
+$ aria2c –s 4 http://getswiftfox.com/builds/installer/pentium4/install-swiftfox.sh -d /tmp 
+$ vi /tmp/ install-swiftfox.sh  （作出适当的修正，不作修正也可） 
+$ sudo sh /tmp/install-swiftfox.sh 
+
+也可以选择其他的网络浏览器，比如 Opera：
+# pacman -S opera
+
+* 4.3 图像编辑
+
+(1) Linux下的Photoshop: GIMP，要安装它可以执行命令：
+# pacman -S gimp
+你可以通过”应用程序 → 图像 → GIMP“来运行 GIMP。
+
+(2)矢量图形编辑软件可以使用 Inkscape：
+# pacman -S inkscape
+
+(3)命令行的可以装上 ImageMagick：
+# pacman -S imagemagick
+
+(4)用来捕获图像的 Scrot：
+# pacman -S scrot
+
+(5)轻量级的图像查看软件 GQview：
+pacman -S gqview
+或者 GNOME 默认的 Eog：
+pacman -S eog
+
+* 4.4 Linux下的Office软件
+
+(1) OpenOffice.org ：
+# pacman -S openoffice-base openoffice-zh_cn
+为了让 OpenOffice.org 运行于 GTK 2 模式，向SHELL的配置文件（如 ~/.bashrc） 添加：
+export OOO_FORCE_DESKTOP=gnome
+
+(2) 永中Office:
+国产软件，听说对MS Office文档格式的支持要比OpenOffice好，如果Word，Exel的文件较多，
+可以考虑这个，就是安装略显麻烦。
+$ cd ~
+$ aria2c -s 4 http://218.90.147.70/EverMore/EIOffice2007/EIO2007_Trial_ZH_Lin.tar.gz  （电信）or:
+$ aria2c -s 4 http://218.104.51.66/EverMore/EIOffice2007/EIO2007_Trial_ZH_Lin.tar.gz   (网通)
+$ tar zxf EIO2007_Trial_ZH_Lin.tar.gz
+用su命令登录root，再进入解压后文件夹（好像是4开头的）；
+# ./setup.sh        （进入永中Office的图形界面安装，指定一下安装目录）
+安装完成后，要以root身份运行一下永中：
+# eio; exit
+$ cd ~ ; seteio     (为普通用户配置下永中)
+$ eio               (从终端运行永中Office，或者从菜单中运行也可以)
+
+* 4.5 即时通讯
+
+要与朋友即时聊天，我们可以选用 Pidgin，它支持 Gtalk、MSN、QQ 等多种协议：
+pacman -S pidgin
+当然，Skype 也不可错过：
+pacman -S skype-staticqt
+
+* 4.6 音影播放
+
+(1)音乐播放软件我选择 Quod Libet，你可以凭自己的喜好来安装：
+# pacman -S quodlibet
+其他的音乐播放器有 MPD、Audacious、Exaile、Amarok 等。
+(2)看电影的话，可用mplayer，同时也加上浏览器插件和常用解码器：
+# pacman -S mplayer mplayer-plugin codecs gstreamer0.10-bad gstreamer0.10-ugly gstreamer0.10-ffmpeg gstreamer0.10-mad gstreamer0.10-mpeg2dec
+如果需要 MPlayer 的前端，那么可以安装 SMPlayer：
+# pacman -S smplayer
+当然，另一个选择 VLC 也挺好：
+# pacman -S vlc
+
+* 4.7 下载工具
+
+命令行下载工具，有 wget。此外，aria2 也不错，它支持断点续传和多线程下载：
+pacman -S aria2
+BitTorrent 下载工具，我们选用 Deluge：
+pacman -S deluge
+其他的包括 Azureus、rTorrent 等。
+另外，我们把 aMule 也安装上：
+pacman -S amule
+为了能够让 aMule 直接从 Firefox 浏览器中处理 ed2k 链接，我们在 Firefox 的 
+about:config 中新建字符串 network.protocol-handler.app.ed2k，并将其设为 
+/usr/bin/ed2k。
+
+* 4.8 文本编辑与排版
+
+(1)如果要求简单的话，可以选用 Gedit：
+pacman -S gedit
+
+(2)安装 Vim，要图形界面的话，可以加上 Gvim：
+pacman -S vim gvim
+
+(3)Emacs 迷们可以执行：
+pacman -S emacs
+Emacs CVS 版本可在 community 中找到。
+
+(4)世界第一流的排版工具集 TexLive
+参看http://wiki.archlinux.org/index.php/Texlive
+也可额外安装 TeX 的集成编辑环境：Kile, or Lyx
+
+* 4.9 安装VirtualBox虚拟机
+$ sudo tupac -S virtualbox_bin   (从AUR安装VirtualBox 的PUEL版本)
+$ sudo vbox_build_module  (创建VirtualBox的内核)
+$ sudo gpasswd -a YourName vboxusers  (将你的名字加入vboxusers用户组)
+$ sudo modprobe  vboxdrv  （如果要立刻开始用，需要加载vboxdrv模块）
+$ sudo vim /etc/rc.conf：
+MODULES中加入vboxdrv，使开机时加载vboxdrv模块.
+$ VirtalBox   (从终端运行virtualbox，或从桌面的菜单中运行它)
+有时，会因为没有libstdc++5 这个库文件，而使virtualbox不能运行。安装它就是了：
+$ sudo pacman -S libstdc++5
+
+* 4.10 wine──在Unix/Linux系统上实现Windows API  
+Wine用Unix的方式实现（或代替了）Windows API ，所以通过Wine可以在Unix-Like系统上运行 Windows 程序及游戏。
+Wine-Doors是一款基于Gnome桌面的Windows软件安装管理包，是Wine 的辅助工具，
+使用非常方便，只需在软件列表中选择要安装的软件，Wine-Doors就会帮你搞定一切，
+不再需要自己动手来配置Wine。什么Office 2003，Photoshop都不在话下了。
+$ sudo tupac -S wine wine-doors
+$ winecfg        (配置好Wine)
+$ sudo wine iexplore http://www.winehq.org  （安装Wine Gecko IE engine）
+$  cp /usr/share/fonts/wenquanyi/wqy-zenhei/wqy-zenhei.ttf ~/.wine/drive_c/windows/fonts
+给Wine提供一个中文字体：WenQuanYi Zen Hei
+$ vi ~/zh.reg, add:      （编辑Wine中文字体支持的注册表文件，否则中文网页会乱码）
+
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"Arial"="WenQuanYi Zen Hei"
+"Arial CE,238"="WenQuanYi Zen Hei"
+"Arial CYR,204"="WenQuanYi Zen Hei"
+"Arial Greek,161"="WenQuanYi Zen Hei"
+"Arial TUR,162"="WenQuanYi Zen Hei"
+"Courier New"="WenQuanYi Zen Hei"
+"Courier New CE,238"="WenQuanYi Zen Hei"
+"Courier New CYR,204"="WenQuanYi Zen Hei"
+"Courier New Greek,161"="WenQuanYi Zen Hei"
+"Courier New TUR,162"="WenQuanYi Zen Hei"
+"FixedSys"="WenQuanYi Zen Hei"
+"Helv"="WenQuanYi Zen Hei"
+"Helvetica"="WenQuanYi Zen Hei"
+"MS Sans Serif"="WenQuanYi Zen Hei"
+"MS Shell Dlg"="WenQuanYi Zen Hei"
+"MS Shell Dlg 2"="WenQuanYi Zen Hei"
+"System"="WenQuanYi Zen Hei"
+"Tahoma"="WenQuanYi Zen Hei"
+"Times"="WenQuanYi Zen Hei"
+"Times New Roman CE,238"="WenQuanYi Zen Hei"
+"Times New Roman CYR,204"="WenQuanYi Zen Hei"
+"Times New Roman Greek,161"="WenQuanYi Zen Hei"
+"Times New Roman TUR,162"="WenQuanYi Zen Hei"
+"Tms Rmn"="WenQuanYi Zen Hei"
+
+$ regedit zh.reg    (将中文字体配置写入Wine的注册表)
+$ wine iexplore http://www.126.com     (试验一下中文效果)
+
+需要注意的是，如果从abs系统编译了并升级安装到了最新的Wine，一定要运行“wineprefixcreate” 来更新Wine的注册表。
+
+* 4.11  其他工具
+
+(1)光盘刻录
+
+KDE下建议选择 K3b，可以通过以下指令安装：
+pacman -S k3b dvd+rw-tools
+为了让当前用户能够使用光盘刻录设备，需要将其添加到 optical 用户组中：
+gpasswd -a YOURNAME optical
+
+如果是Gnome用户，建议安装gnomebaker，不亚于k3b:
+pacman -S gnomebaker
+
+(2) FTP上传
+
+可选择命令行的 Lftp：
+pacman -S lftp
+图形化的有 gFTP、FileZilla 等。
+FTP下载其实不必特意安装什么，因为wget，aria2都是支持FTP协议的。
+
+(3)文档查看
+
+查看 PDF 文档，可以安装 Evince：pacman -S evince
+也可以用Adobe公司的acroread：pacman -S acroread
+或轻量级的xpdf：pacman -S xpdf xpdf-chinese-simplified xpdf-chinese-traditional
+
+CHM 文档，可以选用kchmviewer
+
+(4)新闻阅读
+
+RSS 离线阅读软件，用 Liferea：
+pacman -S liferea
+
+(5)邮件收发
+
+电子邮件客户端，可以选择 Thunderbird：
+pacman -S thunderbird thunderbird-i18n
+或者采用：mutt + msmtp + getmail
+
+(6)图形界面的进程查看器 (gps) 
+
+$ sudo pacman –S gps 
+$ gps 
+如果是文字界面的话，可用下面的命令： 
+$ ps ax 
+
+(7)计算器：
+pacman -S gcalctool
+
+(8)压缩/解压 rar、zip 等格式：
+
+pacman -S p7zip q7z    (安装7zip，q7z是其GUI程序)
+pacman -S unrar unzip
+
+另外，图形化的可以用 File-roller：
+pacman -S file-roller
+
+(9)词典翻译
+安装 StarDict：
+pacman -S stardict
+同时，词典文件需从 StarDict 官方网站下载，并释放到 /usr/share/stardict/dic/ 目录。
+
+(10)Java 支持：
+
+pacman -S jre
+
+(11)Flash 插件：
+
+pacman -S flashplugin
+
+* 4.11 安装主题
+
+GDM 可以安装 Arch Boomerang Underlight 这套清爽的主题。下载后，执行：
+$ tar zxvf arch-boomerang-underlight-gdm.tar.gz
+$ mv arch-underlight-* /usr/share/gdm/themes/
+$ sudo gdmsetup   (需要在X下执行，需要事先安装gdm)
+或者，如果在使用Gnome，就在”系统 → 系统管理 → 登录窗口“中将样式更改为主题模式，
+并选择已安装的主题即可。
+参看：http://www.gnome-look.org/
+
+还可以打造一个 Mac OS X 风格的界面，参看：http://sourceforge.net/projects/mac4lin
+
+5  常见问题
+
+* 5.1 声音问题 
+
+安装ALSA。实际上，ALSA 已被包含到 2.6 版的内核中。因此，只需安装 ALSA 的相关工具即可：
+pacman -S alsa-utils
+接着，将当前用户添加到 audio 用户组，以便使用声卡设备：
+gpasswd -a YOURNAME audio
+同时，将 alsa 添加到 /etc/rc.conf 配置文件的 DAEMONS 中：
+DAEMONS=(syslog-ng network netfs crond gdm alsa)
+值得注意的是，ALSA 默认是静音状态，需要先打开音量。另外，也可点击”系统 → 首选
+项 → 音效“进行测试。
+
+$ sudo pacman -S alsa-lib alsa-oss alsa-utils (oss 包解决声卡独占问题) 
+$ sudo alsaconf   (设置声卡) 
+$ sudo alsamixer 
+$ sudo alsactl store  (设置和保存音量，并在 /etc/rc.conf中的 DAEMONS行加入alsa) 
+$ amixer set Master 75 unmute 
+$ amixer set PCM 75 unmute  (75 好像是原声，再高的话，声音会失真) 
+
+* 5.2 笔记本电脑可能遇到的问题
+(1) 触摸板问题
+参看http://wiki.archlinux.org/index.php/Touchpad_Synaptics
+(2) 摄像头问题
+参看http://wiki.archlinux.org/index.php/Webcam_Setup
+(3) 无线上网问题
+参看http://wiki.archlinux.org/index.php/Wireless
+(4) 快捷键问题
+参看http://wiki.archlinux.org/index.php/Extra_Keyboard_Keys
+
+* 5.3 打印机设置
+
+(1) 当前最流行的底层基础打印系统：CUPS  (适用于所有打印机)
+Unix-Like系统下的打印系统中，最具易用性的当数CUPS (The Common UNIX Printing System )，即
+Unix通用打印系统。在过去，Unix-Like系统下的打印问题是老大难。CUPS的出现使这个问题得到了
+极大的缓解。
+
+安装：
+# pacman -S cups ghostscript gsfonts
+
+CUPS系统运行记录：
+编辑/etc/cups/cupsd.conf，设置LogLevel的等级：
+LogLevel debug2
+如果出现错误，就可以察看调试信息了：
+$ tail -n 100 -f /var/log/cups/error_log
+
+看看系统已经加载了哪些模组（Modules）：
+# lsmode |less
+再来看看系统中有哪些可以使用的模组：
+# modprobe -l |less
+
+为内核加载打印机模组后，连接好打印机机，并打开电源：
+i) USB 接口打印机
+# modprobe usblp                      （2.6.x 内核）
+# modprobe printer                    （2.4.x 内核）
+# tail /var/log/messages.log          （看看安装成功了没有）
+
+ii) 并口打印机
+# modprobe lp parport parport_pc      （2.6.x 内核）
+# modprobe parport parport_pc         （2.4.x 内核）
+# tail /var/log/messages.log          （看看安装成功了没有）
+将这些模组加入/etc/rc.conf中的MODULES中去，以便开机时自动加载。
+
+启动 CUPS ：
+# /etc/rc.d/cups start       （可将cups加入/etc/rc.conf中的DAEMONS中去，以便开机时自动加载）
+
+这个时候，就可以用CUPS在控制台下做一些简单的打印了，如：
+$ cat ~/.xinitrc > /dev/usb/lp0      (USB接口打印机)
+
+当然仅仅依靠CUPS打印，如果在X下，肯定是不方便的。主要是因为缺少驱动，Linux下的打印驱动是PPD文件。
+
+(2) 打印驱动： Foomatic
+Foomatic是一个数据库驱动的打印系统，它将Unix下的通用后台打印系统与开源的打印机驱动整合在一起。
+只要有任一在开源驱动下能够正常工作的打印机，它就能支持了。它支持CUPS, LPRng, LPD, GNUlpr, Solaris LP,
+PPR, PDQ, CPS 这些底层的打印系统，也能直接打印（既是驱动也是打印工具）。
+Foomatic打印速度快，打印质量也挺不错。不过缺点是，有个别的打印机可能没有PPD文件驱动。
+
+# pacman -S foomatic-***
+
+Foomatic包含五个安装包：
+foomatic-filters (帮助后台打印系统将PostScript转成打印机语言)，
+foomatic-db (foomatic-db-engine生成PPD文件时要用到的一切资料)，
+foomatic-db-PPD (已经获支持的打印驱动)
+foomatic-db-engine (将 Foomatic XMLo数据库中的数据生成PPD文件)，
+foomatic-db-hpijs (专为HP打印驱动生成Foomatic XML 数据)。
+
+一般来说，安装前四个包就可以了。如果没有惠普打印机，就不必安装foomatic-db-hpijs了。
+
+(4) 打印驱动：hplip
+惠普DeskJet, OfficeJet, Photosmart, Business Inkjet 和一些 LaserJet 打印机型号，需要安装hplip。只用于惠普打印机。
+也可同时安装上面的Foomatic，对比一下两者的打印速度。
+
+# pacman -S hplip
+
+(5) 打印驱动：Gutenprint
+也许以上的打印驱动仍然不行（不过安装foomatic一定是必要的，能提高打印速度）。在配置CUPS时（即将讲到）
+没有找到自己的打印机型号。那么可能还需要接着安装Gutenprint。
+Gutenprint 是GIMP的打印扩充功能模块，过去叫"gimp-print"，它能够为GIMP提供流行的打印驱动，能
+让佳能、爱普生、惠普、利盟、索尼、奥林巴斯，以及其他基于PCL技术的打印机，打印出更出色的品质。用于高品质的图像打印是在好不过了。
+它支持的打印机型号列表可见于：http://gutenprint.sourceforge.net/p_Supported_Printers.php3
+不过Gutenprint的打印品质是没得说，但速度就不敢恭维了。但有foomatic的支持就会快很多。
+
+# pacman -S gutenprint
+
+(6)  在X下配置CUPS
+打印基础系统CUPS和打印驱动安装好的，就要开始配置打印机了。
+可以通过配置CUPS来配置打印机。配置CUPS的方法适用于一切打印机及其驱动。因此推荐使用。
+进入X，打开一个网络浏览器，访问：
+http://localhost:631      （也可以用在/etc/hosts中设置好的hostname来代替localhost）
+按照提示，一步一步的配置好打印机：
+Manage Printers ---> Add Printer ---> root密码验证 ---> 输入打印机名称 ---> 选择设备类型
+（打印机型号及其接口：USB接口 or 并口打印机） ---> 选择你的打印机 ---> 通过打印机型号来选择适当的打印机驱动，并Add
+（如果打印驱动的名称中出现了foomatic字样，一定要优先选择） ---> 打印选项的设置 ---> 完成
+
+也可以使用另外的配置界面，不过可能要另外安装：
+tupac -S gnome-cups-manager     (Gnome下)
+tupac -S gtklp                  (KDE下)
+
+(5) 打印机共享
+
+i) Linux to Linux
+服务器端：编辑 /etc/cups/cupsd.conf 中“Location”一段，以允许客户端的访问，重启cups服务。
+客户端：编辑 /etc/cups/cupsd.conf 中“ServerName”一段，以允许访问服务器端。执行命令：lpq
+
+ii) Linux to Windows
+两端都应当安装Samba。参看Wiki。
+
+iii) Windows to Linux
+两端都应当安装Samba。参看Wiki
+
+*******
+所有关于打印的问题，请一定要参看：
+http://wiki.archlinux.org/index.php/CUPS
+http://www.cups.org/
+http://gimp-print.sourceforge.net/
+http://www.linuxprinting.org/printer_list.cgi
+http://www.linux-foundation.org/en/OpenPrinting/Database/Foomatic
+http://savannah.nongnu.org/projects/foomatic-gui/
+http://wiki.gentoo.tw/mediawiki/index.php/Printing-howto
+
+另可参看http://www.redhat.net.cn/online/linuxbook/1/16.htm
+
+* 5.4 服务的访问控制
+
+/etc/hosts.allow 和/etc/hosts.deny 
+这两个文件是tcpd 服务器的配置文件，tcpd 服务器可以控制外部IP 对本机服务的访问。 
+这两个配置文件的格式如下： 
+#服务进程名:主机列表:当规则匹配时可选的命令操作 
+server_name:hosts-list[:command] 
+/etc/hosts.allow 控制可以访问本机的IP 地址，/etc/hosts.deny 控制禁止访问本机的IP。 
+如果两个文件的配置有冲突，以/etc/hosts.deny 为准。下面是一个/etc/hosts.allow 的示例： 
+ALL: 127.0.0.1: ALLOW     #允许本机访问本机所有服务进程 
+smbd: 192.168.0.0/255.255.255.0   #允许192.168.0.网段的IP 访问smbd 服务 
+ALL 关键字匹配所有情况，EXCEPT 匹配除了某些项之外的情况，PARANOID 匹配你想控 
+制的IP 地址和它的域名不匹配时(域名伪装)的情况。 
+
+* 5.5 启动加速 
+
+编辑 /etc/rc.conf ，在 “ DAEMONS ”行的一些不急着需要用的后台程序前加上@，使后台运行。 
+
+* 5.6  中文Java 支持 
+
+$JAVA_HOME/jre/lib/fonts/  下建一个fallback 的目录，然后建一个中文字体的软链接过去。 
+
+* 5.7  可移动设备的自动挂载（HAL + dbus or ivman） 及中文名支持
+
+$ sudo pacman -S hal dbus acpid（hal 依赖 dbus，acpid 可管理设备的电源。） 
+$ sudo vi /etc/rc.conf ，在 DAEMONS行 加入hal，如: 
+DAEMONS=(syslog-ng acpid hal network !netfs @crond @alsa gdm) 
+注意：如果daemons 列表中有dbus，要移除它，以免出错。hal 会自动加载dbus。 
+$ sudo gpasswd –a username optical 
+$ sudo gpasswd –a username storage 
+把你的用户加入到 optical，storage 这几个组里面。前文中已经加入过了，可跳过。
+如果用ivman来替代dbus，则需要将用户名加入到plugdev组中。
+$ sudo vi /etc/fstab，注释掉下面两行： 
+/dev/cdrom /mnt/cdrom  iso9660 ro,user,noauto,unhide 0     0 
+/dev/dvd /mnt/dvd   udf  ro,user,noauto,unhide 0      0 
+$ sudo vi /etc/hal/fdi/policy/preferences.fdi，可加入一些很有用的规则，
+如自动挂载NTFS文件系统，自动挂载可移动设备，性能优化，U盘的中文名支持等：
+ 
+<?xml version="1.0" encoding="UTF-8"?> 
+<deviceinfo version="0.2">
+ 
+    <device>
+        <match key="volume.fstype" string="ntfs">
+            <append key="volume.mount.valid_options" 
+            type="strlist">dmask=000</append>
+            <append key="volume.mount.valid_options" 
+            type="strlist">fmask=111</append>
+        </match>
+    </device>
+
+    <device>
+    <!-- Use UTF-8 charset for vfat -->
+       <match key="volume.fstype" string="vfat">
+		   <merge key="volume.policy.mount_option.iocharset=utf8" 
+           type="bool">true</merge>
+	   </match>
+   </device>
+
+   <device>
+       <match key="storage.hotpluggable" bool="false">
+          <match key="storage.removable" bool="false">
+            <merge key="storage.automount_enabled_hint" type="bool">false</merge>
+          </match>
+       </match>
+   </device>
+
+ <device> 
+   <match key="block.is_volume" bool="true">
+     <match key="volume.size" compare_lt="8000000000">
+       <match key="@block.storage_device:storage.hotpluggable" bool="true">
+         <merge key="volume.policy.mount_option.sync" type="bool">true</merge>
+         <merge key="volume.policy.mount_option.noatime" 
+         type="bool">true</merge>
+        </match>
+        <match key="@block.storage_device:storage.removable" bool="true">
+         <merge key="volume.policy.mount_option.sync" type="bool">true</merge>
+         <merge key="volume.policy.mount_option.noatime" 
+          type="bool">true</merge>
+        </match>
+      </match>
+     <match key="volume.size" compare_ge="8000000000">
+       <match key="@block.storage_device:storage.hotpluggable" bool="true">
+         <merge key="volume.policy.mount_option.sync" 
+          type="bool">false</merge>
+         <merge key="volume.policy.mount_option.noatime" 
+         type="bool">false</merge>
+       </match>
+       <match key="@block.storage_device:storage.removable" bool="true">
+         <merge key="volume.policy.mount_option.sync" 
+          type="bool">false</merge>
+         <merge key="volume.policy.mount_option.noatime" 
+         type="bool">false</merge>
+       </match>
+     </match>
+   </match>
+ </device>
+
+</deviceinfo>
+
+参看：http://wiki.archlinux.org/index.php/HAL 
+
+注意，必须事先安装好ntfs-3g安装包，才能成功挂载NTFS分区。最后：
+$ sudo /etc/rc.d/hal restart
+即可正常使用HAL支持了，同时移动设备上的中文名（其实其它语言也可以）也可以得到支持。
+如果以上不能工作，还可以安装pmount: 
+$ sudo pacman -Sy pmount 
+
+* 5.8 更改GNOME 菜单下的图标 
+
+可以编辑/usr/share/applications 中的相应文件
+
+* 5.9 ArchLinux的包管理系统：Pacman
+常用命令有：
+pacman -Sy  abc                  #和源同步后安装名为abc的包 
+pacman -S   abc                  #从本地数据库中得到abc的信息，下载安装abc包 
+pacman -Sf  abc                  #强制安装包abc 
+pacman -Ss  abc                  #搜索有关abc信息的包 
+pacman -Si  abc                  #从数据库中搜索包abc的信息 
+pacman -Qi  abc                  #列出已安装的包abc的详细信息 
+pacman -Syu                      #同步源，并更新系统 
+pacman -Sy                       #仅同步源 
+pacman -R   abc                  #删除abc包 
+pacman -Rc  abc                  #删除abc包和依赖abc的包 
+pacman -Rsc abc                  #删除abc包和abc依赖的包 
+pacman -Sc                       #清理/var/cache/pacman/pkg目录下的旧包 
+pacman -Scc                      #清除所有下载的包和数据库 
+pacman -U   abc                  #安装下载的abs包，或新编译的abc包
+pacman -Sd  abc                  #忽略依赖性问题，安装包abc 
+pacman pacman -Su --ignore foo   #升级时不升级包foo 
+pacman -Sg  abc                  #查询abc这个包组包含的软件包
+
+* 5.10 Arch Build System (ABS)
+
+利用abs 可以从源码自定义编译安装包。其过程如下： 
+(1) Synchronize your ABS tree with the server. 
+# pacman -S cvsup 
+# abs 
+
+(2) Create a new directory in /var/abs/local/ named after the package 
+you are going to create. 
+$ mkdir -p ~/abs/local/       (这里，推荐在个人的主目录下创建一个ABS的工作目录)
+
+(3）Copy the PKGBUILD.proto prototype from /var/abs/ into your 
+newly created directory, remove the .proto suffix, and edit it to fit 
+the new package. 
+$ cp -r /var/abs/...  ~/abs/local/    (将你要编译的软件的PKGBUILD目录复制到个人目录下)
+
+(4) Run makepkg in the working directory with the PKGBUILD file. 
+$ makepkg        (开始编译这前，可以编辑一下PKGBUILD文件，更改其默认安装目录到个人
+主目录下，用“--prefix＝...”来指定安装目录)
+
+(5) Install the newly built package with pacman.
+$ pacman -U ..pkg.gz    (安装新编译好的包文件)
+
+(6) Send the package to your friends for bragging rights (or give it to an Archer 
+so s/he can stick it in the master ABS tree). 
+
+* 5.11  创建一个光盘镜像
+Linux 下创建一个光盘镜像真的很简单，基本上有两类方法：
+(1) 镜像的源文件在光盘上
+将光盘放入光驱，但不用 mount 指令加载它，然后：
+dd if=/dev/dvd of=dvd.iso # for dvd 
+dd if=/dev/cdrom of=cd.iso # for cdrom 
+dd if=/dev/scd0 of=cd.iso # if cdrom is scsi 
+(2) 镜像的源文件在硬盘上或被 mount 到了硬盘上，比如在 /tmp/directory/：
+mkisofs -o cd.iso /tmp/directory/ 
+如果这个源文件是一个DVD视频文件，那么要这样用：
+mkisofs -dvd-video -o dvd.iso /tmp/directory/
+关于mkisofs 的更多用法，还请参看手册：man mkisofs
+关于DVD视频光盘的编辑和创建，请参看：
+http://gecius.de/linux/dvd.html
+http://gentoo-wiki.com/HOWTO_Create_a_DVD:Filesystem
+
+6 服务器环境
+
+* 6.1 FTP服务
+
+(1) vsftpd
+FTP服务器的安装比较简单。直接用Pacman安装即可。当然，还必须配置好，才可正常安全的使用。
+vsftpd的使用和配置，可参考：
+http://vsftpd.beasts.org/
+http://gentoo-wiki.com/HOWTO_vsftpd
+http://www.uplinux.com/www/net/02/117.shtml
+
+(2) pureftpd
+参考http://www.pureftpd.org/project/pure-ftpd
+    http://www.chinaunix.net/jh/15/2424.html
+
+* 6.2 HTTP服务 
+
+(1) 提供Web服务的程序
+
+能提供WEB服务的开源程序主要有：Apache httpd, Lighttpd, 和Nginx。
+Apache稳定，安全，使用者最多，但是运行时对内存、CPU的开销也是最高的。
+在静态网页支持上，lighttpd/nginx 比 apache 优胜很多。
+如果不考虑虚拟主机的安全设置问题，Nginx无疑是最好的选择，其次是Lighttpd。
+
+i) Apache httpd: 参见http://httpd.apache.org/
+
+ii) Lighttpd: 参见http://wiki.archlinux.org/index.php/Lighttpd_For_Both_SSL_And_Non-SSL
+
+iii) Nginx: 参见http://wiki.codemongers.com/Main
+
+(2) 动态网页的程序接口(CGI)：FastCGI：
+是HTTP服务器与机器上其他程序进行通信的一个接口。这个“其他程序”可以使用任何计算机语言
+来编写，它通过CGI这个接口从HTTP服务器取得输入，然后把运行的结果又通过CGI这个接口交给HTTP
+服务器，而HTTP服务器把这个结果送给浏览器。提供Web服务的程序都有CGI模块。
+不过CGI技术的通用性与效率不高，所以有了性能大幅提升的FastCGI。FastCGI要求提供Web服务的
+程序整合fcgi模块。
+参见http://wiki.archlinux.org/index.php/Apache_fastcgi
+    http://wiki.archlinux.org/index.php/Fastcgi_and_lighttpd
+
+(3) 动态网页的脚本语言
+PHP：参见http://wiki.archlinux.org/index.php/PHP
+Python: 在动态网页上的应用与PHP相似。
+JSP：Java语言支持，需安装JDK
+
+(4) 数据库
+MySQL:  当前国内用的较多的数据库。适合小访问量或个人使用。
+PostgreSQL:  世界上最先进，最稳定的数据库。能充分发挥出机器的潜能。更加适合大企业环境。
+
+参看http://wiki.archlinux.org/index.php/PostgreSQL
+
+(5) HTTP服务器的架构
+
+i) 不带数据库支持的轻量级WEB：Nginx/lighttpd + PHP/Python + FastCGI
+
+ii) 有数据库支持：Apache/lighttpd + PHP/Python + MySQL/PostgreSQL，也可再追加JSP的支持。
+参看http://wiki.archlinux.org/index.php/LAMP
+参见http://wiki.archlinux.org/index.php/Apache_fastcgi
+    http://wiki.archlinux.org/index.php/Fastcgi_and_lighttpd
+    http://www.knowsky.com/3232.html
+
+iii) 更加高效、可靠、稳定的WEB服务器。下面的架构图比较不错：
+--------      ------------      -------------        ----------------        --------------
+|客户端| ===> |负载均衡器| ===> |反向**/缓存| ===>   |WEB服务器|     ===>  |数据库服务器|
+--------      ------------      -------------        ----------------        --------------
+                  Nginx            Squid              Apache/lighttpd        MySQL/PostgreSQL
+                                                      +(PHP+eAccelerator)     + memcache
+
+参看http://huangjt.jobui.com/blog/80186.html
+
+(6) 用WebDav替代传统的FTP服务
+WebDav是一个使用XML技术的基于HTTP协议的扩展协议，具备HTTP的所有优点，力图提供
+一个网页编辑的统一接口。用它替代传统的FTP服务，可以避免FTP存在的一些中文问题。
+参看：http://wiki.archlinux.org/index.php/Simple_WebDav_Setup
+      http://wiki.archlinux.org/index.php/WebDAV_authentication
+
+* 6.3 邮件服务
+
+PostFix：参看http://wiki.archlinux.org/index.php/PostFix_Howto
+
+* 6.4 文件共享
+
+文件共享的方法较多，机器上只要安装了任一网络文件系统就可以共享了。网络文件系统有：
+ftpfs, sshfs, shfs, smbfs, nfs, etc. 
+当然，使用http服务来共享文件也未尝不可。
+
+(1) Shfs
+sshfs可以开机自动挂载，关机和重启时也可以自动卸载sshfs文件系统，但是它不能用mount来
+直接指定-t参数来挂载，因此也不能直接加到/etc/fstab中，而且用df也不能列出那样的分区。
+但是shfs解决了这个问题，它能像挂载普通分区那样挂载sshfs文件系统。它是通过内核的shfs
+模块来实现的，
+
+参看http://wiki.archlinux.org/index.php/Shfs
+
+(2) Samba
+可帮助实现跨平台（Linux <--->Windows) 的文件共享和打印共享。
+参看http://wiki.archlinux.org/index.php/Setting_up_Samba
+    http://www.samba.org/
+
+(3) NFS
+参看http://wiki.archlinux.org/index.php/Nfs
+
+(2) rsync
+Rsync用于两台机器上文件的同步备份，它本身不算是共享程序，但它能起到共享的作用。通常与ssh合用。
+参看http://samba.anu.edu.au/rsync/
+    http://dz.adj.idv.tw/thread-48-1-4.html
+
+* 6.5 远程登录
+
+(1) OpenSSH/OpenSSH-chroot
+用 OpenSSH-chroot 基于Openssh，但添加了新特性，即可以创建一个chrootjail。chrootjail是单独划分
+出的一个空间，以限制远程登录者活动不超出此范围，更不会影响到主系统。所以比用 Openssh 更安全。
+# pacman -S openssh-chroot
+# mkdir /var/openssh_chroot
+# chroot_create /var/openssh_chroot   (将chrootjail放到/var/openssh_chroot，或其它地方)
+# chroot_adduser USERNAME /var/openssh_chroot  (创建远程登录者帐户，并为其指定chrootjail)
+# /etc/rc.d/sshd restart  (手动重启sshd服务，也可将sshd添加到/etc/rc.conf中的DAEMON中去)
+
+如果远程机器是Unix-Like系统，可用：ssh <username>@localhost 来登入；如果是Windows, 可使用
+Putty, or pietty。
+
+参看http://wiki.archlinux.org/index.php/Openssh-chroot
+
+(2) OpenVPN
+
+* 6.6 安全问题 
+
+(1) 防火墙 (Iptables)
+这个实在不是几句话能讲明白的。不过想提醒几句：要使Iptables发挥出最大作用，最好是在一台
+旧电脑装上NAT+Iptables，充当网关，然后自己的电脑跟此网关相连接。
+参看：http://wiki.archlinux.org/index.php/Firewalls
+      http://wiki.archlinux.org/index.php/Simple_stateful_firewall_HOWTO
+      http://gentoo-wiki.com/HOWTO_Iptables_for_newbies
+      http://iptables-tutorial.frozentux.net/iptables-tutorial.html
+      http://wiki.archlinux.org/index.php/High_Performance_Firewall/Nat_with_iptables_and_VLANs_and_iproute2
+
+(2) 入侵监测 (Snort)
+这个太复杂了。
+有兴趣可以看一看Toby Kohlenberg等编写的专著"Snort: Intrusion Detection and Prevention Toolkit"。
+电子书下载：http://rapidshare.com/files/27449819/Snort_Intrusion_Detection_and_Prevention_Toolkit_ertu.rar
+
+参看http://www.snort.org/
+}}}
+
+以上将不定时的不断保持更新。欢迎提出意见和建议。
+
+另外，个人的文本编辑器已经完全从vi转向了vim，其最令人满意的优点是，对多语言的支持很好。下面的配置基本上是够用了，但是毕竟编码的识别不是一件轻松的事情，因此推荐使用一个Vim插件 fencview ，该插件使用词频统计的方式识别编码，正确率非常高。从 http://www.vim.org/scripts/script.php?script_id=1708 这里下载。
+
+代码:
+{{{
+colorscheme evening   "这个是配色方案的名字
+set langmenu=en	      "Gvim菜单的语言控制，如果要简体中文就用zh_CN
+set encodings=utf-8   "Vim 内部使用utf-8字符编码方式
+set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
+"上面是编码的自动识别，必须按照从严格到宽松的顺序排列。ucs-bom可以保证识别Windows下的txt文件。
+"设定GUI下的字体
+if has("gui_running") 
+        if has("gui_gtk2") 
+            set guifont=Luxi\ Mono\ 12 
+        elseif has("x11") 
+            set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-* 
+        else 
+            set guifont=Luxi_Mono:h12:cDEFAULT 
+        endif 
+endif
+}}}
+
+有时从网上下载的配置文件中含有Windows文档的换行符（^M），从而不能解读。可以用pacman搜索 dos2unix，并安装它。
+
+.fonts.conf 推荐使用 ~/.fonts.conf from the Forum。
