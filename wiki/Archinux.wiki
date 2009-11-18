@@ -10,7 +10,7 @@
 	* 资源 [http://wiki.archlinux.org/index.php/Category:%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87 中文Wiki] [http://www.linuxsir.org/bbs/forumdisplay.php?s=3b9489c8a372a90c0e52f0cdbfe23a99&f=96 LinuxSir 讨论区]
 
 ==== 安装 ====
-	[http://www.linuxsir.org/bbs/thread317982.html 个人的Arch Linux 安装笔记和步骤简述---20080126更新] [ArchInstallSim 存档]
+	[Install-cwjiof 个人的Arch Linux 安装笔记和步骤简述---20080126更新] [ArchInstallSim 存档]
 
 ==== Pacman ====
 
