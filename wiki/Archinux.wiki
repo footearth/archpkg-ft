@@ -1,7 +1,7 @@
 ﻿
 == Arch Linux ==
 
-	* 包管理工具 [#Pacman pacman]
+	* 包管理工具 [#Pacman pacman] [http://www.archlinux.org/pacman/ man pacman]
 	* ABS [http://aur.archlinux.org/ AUR] PKGBUILD
 		* [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs.html Archlinux 的灵魂(1)]
 		* [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-2.html Archlinux 的灵魂(2)]
@@ -13,8 +13,6 @@
 	[Install_cwjiof 个人的Arch Linux 安装笔记和步骤简述----20080126更新]
 
 ==== Pacman ====
-
-[http://www.archlinux.org/pacman/ man pacman]
 
 {{{
 升级系统:
