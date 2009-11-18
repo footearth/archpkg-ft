@@ -506,7 +506,8 @@ pacman -S skype-staticqt
 # pacman -S quodlibet
 其他的音乐播放器有 MPD、Audacious、Exaile、Amarok 等。
 (2)看电影的话，可用mplayer，同时也加上浏览器插件和常用解码器：
-# pacman -S mplayer mplayer-plugin codecs gstreamer0.10-bad gstreamer0.10-ugly gstreamer0.10-ffmpeg gstreamer0.10-mad gstreamer0.10-mpeg2dec
+# pacman -S mplayer mplayer-plugin codecs gstreamer0.10-bad gstreamer0.10-ugly gstreamer0.10-ffmpeg \
+gstreamer0.10-mad gstreamer0.10-mpeg2dec
 如果需要 MPlayer 的前端，那么可以安装 SMPlayer：
 # pacman -S smplayer
 当然，另一个选择 VLC 也挺好：
