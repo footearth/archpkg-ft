@@ -7,12 +7,13 @@
 		# [http://aur.archlinux.org/ AUR]
 		# [#PKGBUILD PKGBUILD]
 	* 下载 [ftp://ftp.archlinux.org/ 官方FTP地址]
-	* 资源 [http://wiki.archlinux.org/index.php/Category:%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87 中文Wiki] [http://www.linuxsir.org/bbs/forumdisplay.php?s=3b9489c8a372a90c0e52f0cdbfe23a99&f=96 LinuxSir 讨论区]
+	* 资源 ||[http://wiki.archlinux.org/index.php/Category:%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87 中文Wiki]||[http://www.linuxsir.org/bbs/forumdisplay.php?s=3b9489c8a372a90c0e52f0cdbfe23a99&f=96 LinuxSir 讨论区]||
 
 ==== 安装 ====
-	[Install_cwjiof 个人的Arch Linux 安装笔记和步骤简述----20080126更新]
-
-	[http://linuxtoy.org/archives/the-perfect-linux-desktop-arch-linux-2007-08-2-1.html 打造完美的 Linux 桌面 — Archlinux 2007.08-2 (1)] [http://linuxtoy.org/archives/openbox-getting-started-guide-2.html (2)] [http://linuxtoy.org/archives/openbox-getting-started-guide-3.html (3)] [http://linuxtoy.org/archives/openbox-getting-started-guide-4.html (4)] [http://linuxtoy.org/archives/openbox-getting-started-guide-5.html (5)] [http://docs.google.com/fileview?id=0BwS1282BBrHnYzljMjgwYWQtOWM4OC00ODEzLTgxZWQtNjFhNTVhNzRmNDBh&hl=zh_CN PDF] [http://docs.google.com/uc?export=download&id=0BwS1282BBrHnYzljMjgwYWQtOWM4OC00ODEzLTgxZWQtNjFhNTVhNzRmNDBh 下载]
+	# [http://docs.google.com/fileview?id=0BwS1282BBrHnZjQ2M2EwNmItM2MxNC00NDY0LWEyYzEtMjg5ZmFlNjhjYWQ1&hl=zh_CN 图解光盘安装过程] [http://docs.google.com/uc?export=download&id=0BwS1282BBrHnZjQ2M2EwNmItM2MxNC00NDY0LWEyYzEtMjg5ZmFlNjhjYWQ1 下载] --虽然版本比较老，但是还是有参考价值的
+	# [Install_cwjiof 个人的Arch Linux 安装笔记和步骤简述----20080126更新]
+	# [http://linuxtoy.org/archives/the-perfect-linux-desktop-arch-linux-2007-08-2-1.html 打造完美的 Linux 桌面 — Archlinux 2007.08-2 (1)] [http://linuxtoy.org/archives/openbox-getting-started-guide-2.html (2)] [http://linuxtoy.org/archives/openbox-getting-started-guide-3.html (3)] [http://linuxtoy.org/archives/openbox-getting-started-guide-4.html (4)] [http://linuxtoy.org/archives/openbox-getting-started-guide-5.html (5)] [http://docs.google.com/fileview?id=0BwS1282BBrHnYzljMjgwYWQtOWM4OC00ODEzLTgxZWQtNjFhNTVhNzRmNDBh&hl=zh_CN PDF] [http://docs.google.com/uc?export=download&id=0BwS1282BBrHnYzljMjgwYWQtOWM4OC00ODEzLTgxZWQtNjFhNTVhNzRmNDBh 下载]
+	# [http://docs.google.com/fileview?id=0BwS1282BBrHnYTE4ZDljYTItNjFiNy00N2U0LTk5M2UtYmI3YjMyZGYzM2Rj&hl=zh_CN 基于2009.08的安装指南] [http://docs.google.com/uc?export=download&id=0BwS1282BBrHnYTE4ZDljYTItNjFiNy00N2U0LTk5M2UtYmI3YjMyZGYzM2Rj 下载]
 
 ==== Pacman ====
 
