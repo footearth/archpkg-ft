@@ -6,7 +6,7 @@
 		# [#ABS ABS]
 		# [http://aur.archlinux.org/ AUR]
 		# [#PKGBUILD PKGBUILD]
-	* 下载 [ftp://ftp.archlinux.org/ 官方FTP地址]
+	* 下载 ||[ftp://ftp.archlinux.org/ 官方FTP地址]||
 	* 资源 ||[http://wiki.archlinux.org/index.php/Category:%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87 中文Wiki]||[http://www.linuxsir.org/bbs/forumdisplay.php?s=3b9489c8a372a90c0e52f0cdbfe23a99&f=96 LinuxSir 讨论区]||
 
 ==== 安装 ====
