@@ -13,6 +13,6 @@ source=(http://archpkg-ft.googlecode.com/svn/backup/phsopcast.tar.gz)
 md5sums=('a96a26ecbd5c514a7e1438a93e816076')
 
 build() {
-	install -d $pkgdir/bin
-	install -Dm755 $srcdir/$pkgname/${pkgname}.sh $pkgdir/bin/$pkgname
+	install -d $pkgdir/usr/bin
+	install -Dm755 $srcdir/$pkgname/${pkgname}.sh $pkgdir/usr/bin/$pkgname
 }
