@@ -1,7 +1,7 @@
 ﻿
 == Arch Linux ==
 
-	* Archlinux 的灵魂 [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs.html (1)] [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-2.html (2)] [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-3.html (3)]
+	* [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs.html Archlinux 的灵魂 (1)] [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-2.html (2)] [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-3.html (3)]
 		# [#Pacman pacman]--包管理工具 [http://www.archlinux.org/pacman/ man pacman]
 		# [#ABS ABS]
 		# [http://aur.archlinux.org/ AUR]
