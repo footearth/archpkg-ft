@@ -11,6 +11,7 @@
 
 ==== 安装 ====
 	[Install_cwjiof 个人的Arch Linux 安装笔记和步骤简述----20080126更新]
+	打造完美的 Linux 桌面 — Archlinux 2007.08-2 [http://linuxtoy.org/archives/the-perfect-linux-desktop-arch-linux-2007-08-2-1.html (1)] [http://linuxtoy.org/archives/openbox-getting-started-guide-2.html (2)] [http://linuxtoy.org/archives/openbox-getting-started-guide-3.html (3)] [http://linuxtoy.org/archives/openbox-getting-started-guide-4.html (4)] [http://linuxtoy.org/archives/openbox-getting-started-guide-5.html (5)]
 
 ==== Pacman ====
 
