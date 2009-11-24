@@ -14,7 +14,7 @@
    * pps
 ||[http://code.google.com/p/ppshell/ PPShell]||[http://code.google.com/p/totem-pps/ Totem-pps]||
    * pplive
-||[http://code.google.com/p/weanscodes/ weanwz打包的PPlive]
+||[http://code.google.com/p/weanscodes/ weanwz打包的PPlive]||
    * GUI整合
 ||[http://code.google.com/p/gmlive/ Gmlive]||
    * WEB整合
