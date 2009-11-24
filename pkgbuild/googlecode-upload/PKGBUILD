@@ -1,0 +1,18 @@
+# Maintainer: FooTearth <footearth@gmail.com>
+
+pkgname=googlecode-upload
+pkgver=0.1
+pkgrel=1
+pkedesc="Script for uploading files to Google Code project."
+arch=('i686' 'x86_64')
+url="http://archpkg-ft.googlecode.com"
+license=('Apache2')
+depends=('python')
+# install=
+source=(http://support.googlecode.com/svn/trunk/scripts/googlecode_upload.py)
+md5sums=('2c641567f21be979e0f575590c0b570a')
+
+build() {
+	install -d $pkgdir/usr/bin
+	install -Dm755 $srcdir/googlecode_upload.py $pkgdir/usr/bin/$pkgname
+}
