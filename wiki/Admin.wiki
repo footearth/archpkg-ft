@@ -1,29 +1,30 @@
 ﻿= Project =
-	* [http://code.google.com/hosting/ Serch]
-
-	* [http://code.google.com/hosting/createProject Creat a new Project]
+||[http://code.google.com/hosting/ Serch]||[http://code.google.com/hosting/createProject Creat a new Project]||
 
 = Downloads =
+<wiki:comment>
 	* [Downloads Downloads]
+</wiki:comment>
 
-	* [http://code.google.com/p/archpkg-fttest/downloads/list Downloads list]
-	* [http://code.google.com/p/archpkg-fttest/downloads/entry New downloads]
+||[http://code.google.com/p/archpkg-fttest/downloads/list Downloads list]||[http://code.google.com/p/archpkg-fttest/downloads/entry New downloads]||
 
 = Wiki =
+<wiki:comment>
 	* [Wiki Wiki]
+</wiki:comment>
 
-	* [http://code.google.com/p/archpkg-fttest/w/list Wiki list]
-	* [http://code.google.com/p/archpkg-fttest/w/edit New wiki]
+||[http://code.google.com/p/archpkg-fttest/w/list Wiki list]||[http://code.google.com/p/archpkg-fttest/w/edit New wiki]||
 
 = Issues =
+<wiki:comment>
 	* [Issues Issues]
+</wiki:comment>
 
-	* [http://code.google.com/p/archpkg-fttest/issues/list Issues list]
-	* [http://code.google.com/p/archpkg-fttest/issues/entry New issues]
+||[http://code.google.com/p/archpkg-fttest/issues/list Issues list]||[http://code.google.com/p/archpkg-fttest/issues/entry New issues]||
 
 = Sources =
+<wiki:comment>
 	* [Sources Sources]
+</wiki:comment>
 
-	* [http://code.google.com/p/archpkg-fttest/source/checkout Checkout]
-	* [http://code.google.com/p/archpkg-fttest/source/browse/ Browse sources]
-
+||[http://code.google.com/p/archpkg-fttest/source/checkout Checkout]||[http://code.google.com/p/archpkg-fttest/source/browse/ Browse sources]||
