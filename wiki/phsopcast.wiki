@@ -1,4 +1,15 @@
 ﻿
+=== phsopcast 基本可用。。功能有待加强 --17/11/09 ===
+
+   * to do list
+       # 健壮脚本
+       # update 更新官方频道 解析XML 生成频道列表
+       # 整合 sopcast pplive pps
+       # 广播 ex.mms://enmms.chinabroadcast.cn/fm91.5
+       # 参考 obmenu gmlive
+       # 整合 节目预告 就更好啦
+   * 整合后改名 cli-XXXX
+
 === sopcast 3.26更新 --15/11/09 ===
 
     * http://www.sopcast.org/cn/    ---- 官方（墙外）
@@ -23,14 +34,3 @@
 
 >> firefox/opera/iron http://localhost:8800/tv.asp &
 }}}
-
-=== phsopcast 基本可用。。功能有待加强 --17/11/09 ===
-
-   * to do list
-       # 健壮脚本
-       # update 更新官方频道 解析XML 生成频道列表
-       # 整合 sopcast pplive pps
-       # 广播 ex.mms://enmms.chinabroadcast.cn/fm91.5
-       # 参考 obmenu gmlive
-       # 整合 节目预告 就更好啦
-   * 整合后改名 cli-XXXX
