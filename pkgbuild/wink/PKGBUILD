@@ -3,7 +3,7 @@
 pkgname=wink
 pkgver=1.5
 pkgrel=1
-pkedesc="Wink is a Tutorial and Presentation creation software"
+pkedesc="A Tutorial and Presentation creation software."
 arch=('i686') # Binary app, doesn't work on x86_64
 url="http://www.debugmode.com/wink/"
 # license=('')

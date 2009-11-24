@@ -3,7 +3,7 @@
 pkgname=gappproxy-svn
 pkgver=102
 pkgrel=1
-pkgdesc="A http proxy based on Google App Engine"
+pkgdesc="A http proxy based on Google App Engine."
 license=('GPL')
 url="http://code.google.com/p/gappproxy/"
 depends=('python')
