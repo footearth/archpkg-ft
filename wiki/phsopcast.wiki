@@ -8,18 +8,11 @@
        # 广播 ex.mms://enmms.chinabroadcast.cn/fm91.5
        # 参考 obmenu gmlive
        # 整合 节目预告 就更好啦
-
-   * sopcast
-		[http://code.google.com/p/gsopcast/ Gsopcast]
-   * pps
-		[http://code.google.com/p/ppshell/ PPShell]
-		[http://code.google.com/p/totem-pps/ Totem-pps]
-   * pplive
-		[http://code.google.com/p/weanscodes/ weanwz打包的PPlive]
-   * GUI整合
-		[http://code.google.com/p/gmlive/ Gmlive]
-   * WEB整合
-		[http://code.google.com/p/player-3-in-one/ sopcast+pps+pplive(web版)]
+   * sopcast [http://code.google.com/p/gsopcast/ Gsopcast]
+   * pps [http://code.google.com/p/ppshell/ PPShell] [http://code.google.com/p/totem-pps/ Totem-pps]
+   * pplive [http://code.google.com/p/weanscodes/ weanwz打包的PPlive]
+   * GUI整合 [http://code.google.com/p/gmlive/ Gmlive]
+   * WEB整合 [http://code.google.com/p/player-3-in-one/ sopcast+pps+pplive(web版)]
    * CLI整合 -- 整合后改名 cli-XXXX
 
 === sopcast 3.26更新 --15/11/09 ===
