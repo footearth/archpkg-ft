@@ -1,0 +1,36 @@
+﻿
+=== sopcast 3.26更新 --15/11/09 ===
+
+    * http://www.sopcast.org/cn/    ---- 官方（墙外）
+    * http://www.sopcast.com/gchlxml    ---- 官方中文频道信息
+    * http://www.sopcastcn.com/     ---- 国内
+    * http://channel.sopcast.com/chlist.xml    ---- 频道国内镜像
+
+    凤凰卫视收视表--有时间看电视的话，也就看看凤凰卫视
+
+    [http://jiemu.ifeng.com/channel/FHZW.htm 凤凰卫视中文台]  sop://211.152.36.37:3912/6004
+
+    [http://jiemu.ifeng.com/channel/FHZX.htm 凤凰卫视资讯台]  sop://211.152.36.37:3912/6005
+
+    [http://jiemu.ifeng.com/channel/FHDY.htm 凤凰卫视电影台] sop://211.152.36.37:3912/60011
+                   
+{{{
+>> sp-sc sop://211.152.36.37:3912/6004 8900 8800 2>&1 >/dev/null &
+
+>> mplayer http://localhost:8800 &
+
+>> gnome-mplayer http://localhost:8800 &
+
+>> firefox/opera/iron http://localhost:8800/tv.asp &
+}}}
+
+=== phsopcast 基本可用。。功能有待加强 --17/11/09 ===
+
+   * to do list
+       # 健壮脚本
+       # update 更新官方频道 解析XML 生成频道列表
+       # 整合 sopcast pplive pps
+       # 广播 ex.mms://enmms.chinabroadcast.cn/fm91.5
+       # 参考 obmenu gmlive
+       # 整合 节目预告 就更好啦
+   * 整合后改名 cli-XXXX
