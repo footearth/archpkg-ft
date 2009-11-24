@@ -10,8 +10,8 @@
 	* [Downloads Downloads]
 </wiki:comment>
 
-	* [http://code.google.com/p/archpkg-fttest/downloads/list Downloads list]
-	* [http://code.google.com/p/archpkg-fttest/downloads/entry New downloads]
+	* [http://code.google.com/p/archpkg-ft/downloads/list Downloads list]
+	* [http://code.google.com/p/archpkg-ft/downloads/entry New downloads]
 
 = Wiki =
 
@@ -19,8 +19,8 @@
 	* [Wiki Wiki]
 </wiki:comment>
 
-	* [http://code.google.com/p/archpkg-fttest/w/list Wiki list]
-	* [http://code.google.com/p/archpkg-fttest/w/edit New wiki]
+	* [http://code.google.com/p/archpkg-ft/w/list Wiki list]
+	* [http://code.google.com/p/archpkg-ft/w/edit New wiki]
 
 = Issues =
 
@@ -28,8 +28,8 @@
 	* [Issues Issues]
 </wiki:comment>
 
-	* [http://code.google.com/p/archpkg-fttest/issues/list Issues list]
-	* [http://code.google.com/p/archpkg-fttest/issues/entry New issues]
+	* [http://code.google.com/p/archpkg-ft/issues/list Issues list]
+	* [http://code.google.com/p/archpkg-ft/issues/entry New issues]
 
 = Sources =
 
@@ -37,5 +37,5 @@
 	* [Sources Sources]
 </wiki:comment>
 
-	* [http://code.google.com/p/archpkg-fttest/source/checkout Checkout]
-	* [http://code.google.com/p/archpkg-fttest/source/browse/ Browse sources]
+	* [http://code.google.com/p/archpkg-ft/source/checkout Checkout]
+	* [http://code.google.com/p/archpkg-ft/source/browse/ Browse sources]
