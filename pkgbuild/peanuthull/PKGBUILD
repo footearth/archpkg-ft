@@ -1,0 +1,47 @@
+# Maintainer: FooTearth <footearth@gmail.com>
+
+pkgname=peanuthull
+pkgver=1.1
+pkgrel=1
+pkedesc="phlinux is a free DDNS (Dynamic DNS) client software"
+arch=('i686') # Binary app, doesn't work on x86_64
+url="http://www.oray.cn"
+# license=('')
+# depends=('')
+backup=(etc/phlinux.conf)
+source=(http://www.oray.cn/peanuthull/download/phlinux10all.tar.gz)
+md5sums=('4c7941f7eeb16f17647ef19f85f37dfa')
+install=${pkgname}.install
+
+build(){
+	binname=phlinux
+	tar xvf $srcdir/${binname}10all/${binname}_package/${binname}-${pkgver}-install.ubuntu.8.04.tar.gz -C $srcdir
+	cd $srcdir
+	{
+		echo "[settings]"
+		echo "szBindAddress = 0.0.0.0"
+		echo "szHost = PhLinux3.Oray.Net"
+		echo "szServiceHost = phservice2.oray.net"
+		echo "szUserID ="
+		echo "szUserPWD ="
+		echo "nUserType = 0"
+		echo "bStartMiniHttp = 1"
+		echo "httproot = /usr/share/peanuthull/webadmin"
+		echo "runas ="
+		echo "lang = en"
+		echo ""
+		echo "[log]"
+		echo "file = /var/log/phlinux.log"
+		echo "level = 1"
+	} > ${binname}.conf
+	sed '/oray/s/net\/ImgOray\/2005\/11\/20051102_PH3_236x57.jpg/cn\/images\/logo.gif/' $srcdir/${binname}_install/webadmin/index.html > index.html
+
+	install -d $pkgdir/{etc,usr}
+	install -d $pkgdir/usr/bin
+	install -d $pkgdir/usr/share/$pkgname
+	install -Dm755 $srcdir/${binname}_install/phlinux $pkgdir/usr/bin
+	cp -R $srcdir/${binname}_install/webadmin $pkgdir/usr/share/$pkgname
+	install -Dm644 $srcdir/${binname}.conf $pkgdir/etc
+	install -Dm644 $srcdir/index.html $pkgdir/usr/share/${pkgname}/webadmin
+	ln -s $pkgdir/usr/bin/{$binname,$pkgname}
+}
