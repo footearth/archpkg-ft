@@ -1,0 +1,29 @@
+﻿= Project =
+	* [http://code.google.com/hosting/ Serch]
+
+	* [http://code.google.com/hosting/createProject Creat a new Project]
+
+= Downloads =
+	* [Downloads Downloads]
+
+	* [http://code.google.com/p/archpkg-fttest/downloads/list Downloads list]
+	* [http://code.google.com/p/archpkg-fttest/downloads/entry New downloads]
+
+= Wiki =
+	* [Wiki Wiki]
+
+	* [http://code.google.com/p/archpkg-fttest/w/list Wiki list]
+	* [http://code.google.com/p/archpkg-fttest/w/edit New wiki]
+
+= Issues =
+	* [Issues Issues]
+
+	* [http://code.google.com/p/archpkg-fttest/issues/list Issues list]
+	* [http://code.google.com/p/archpkg-fttest/issues/entry New issues]
+
+= Sources =
+	* [Sources Sources]
+
+	* [http://code.google.com/p/archpkg-fttest/source/checkout Checkout]
+	* [http://code.google.com/p/archpkg-fttest/source/browse/ Browse sources]
+
