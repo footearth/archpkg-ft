@@ -13,8 +13,7 @@
 		[http://code.google.com/p/gsopcast/ Gsopcast]
    * pps
 		[http://code.google.com/p/ppshell/ PPShell]
-
-		[http://code.google.com/p/totem-pps/ Totem-pps]||
+		[http://code.google.com/p/totem-pps/ Totem-pps]
    * pplive
 		[http://code.google.com/p/weanscodes/ weanwz打包的PPlive]
    * GUI整合
