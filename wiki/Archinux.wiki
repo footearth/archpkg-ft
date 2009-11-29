@@ -1,13 +1,11 @@
-﻿
+﻿||[ftp://ftp.archlinux.org/ 官方FTP地址]||[http://aur.archlinux.org/ AUR]||[http://wiki.archlinux.org/index.php/Category:%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87 中文Wiki]||[http://www.linuxsir.org/bbs/forumdisplay.php?s=3b9489c8a372a90c0e52f0cdbfe23a99&f=96 LinuxSir 讨论区]||
+
 == Arch Linux ==
 
 	* [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs.html Archlinux 的灵魂 (1)] [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-2.html (2)] [http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-3.html (3)]
 		# [#Pacman pacman]--包管理工具 [http://www.archlinux.org/pacman/ manpage]
-		# [#ABS ABS]
-		# [http://aur.archlinux.org/ AUR]
 		# [#PKGBUILD PKGBUILD]
-	* 下载 ||[ftp://ftp.archlinux.org/ 官方FTP地址]||
-	* 资源 ||[http://wiki.archlinux.org/index.php/Category:%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87 中文Wiki]||[http://www.linuxsir.org/bbs/forumdisplay.php?s=3b9489c8a372a90c0e52f0cdbfe23a99&f=96 LinuxSir 讨论区]||
+		# [#ABS ABS]
 
 ==== 安装指南 ====
 	* [http://docs.google.com/fileview?id=0BwS1282BBrHnZjQ2M2EwNmItM2MxNC00NDY0LWEyYzEtMjg5ZmFlNjhjYWQ1&hl=zh_CN 图解光盘安装过程] [http://docs.google.com/uc?export=download&id=0BwS1282BBrHnZjQ2M2EwNmItM2MxNC00NDY0LWEyYzEtMjg5ZmFlNjhjYWQ1 >>下载<<] --虽然版本比较老，但是还是有参考价值的
