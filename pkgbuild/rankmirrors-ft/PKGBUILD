@@ -11,7 +11,7 @@ license=('GPL3')
 depends=(pacman)
 # install=
 source=(http://archpkg-ft.googlecode.com/svn/pkgbuild/rankmirrors-ft/rankmirrors-ft.tar.bz2)
-md5sums=('182361640d48415191cee3226e8898b4')
+md5sums=('cb3ef7cc9bcd8d56528190911f1f50ce')
 
 build(){
 	install -dm755 $pkgdir/usr/{bin,share}
