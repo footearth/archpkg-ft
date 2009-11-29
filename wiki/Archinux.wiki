@@ -36,6 +36,9 @@
 删除指定软件包连同依赖及配置文件:
 	pacman -Rsn
 
+删除指定软件包及其配置文件却不移除其依赖:
+	pacman -Rdn
+
 查询软件包:
   远程仓库:
 	pacman -Ss package
