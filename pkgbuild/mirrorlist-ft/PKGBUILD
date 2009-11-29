@@ -1,0 +1,32 @@
+# Maintainer: FooTearth <footearth@gmail.com>
+
+pkgname=mirrorlist-ft
+pkgver=20091130
+pkgrel=1
+pkgdesc="Arch Linux mirror list for use by pacman"
+arch=('i686' 'x86_64')
+url="http://archpkg-ft.googlecode.com"
+license=('GPL3')
+backup=(etc/pacman.d/mirrorlist)
+source=(mirrorlist-ft)
+install=(mirrorlist-ft.install)
+
+# NOTE on building this package:
+# * Go to the trunk/ directory
+# * Run bash -c ". PKGBUILD; updatelist"
+# * Update the checksums, update pkgver
+# * Build the package
+
+updatelist() {
+  wget -O mirrorlist http://archpkg-ft.googlecode.com/svn/archpkg-ft/mirrorlist-ft
+  sed -i 's/i686/@carch@/' mirrorlist
+}
+
+build() {
+  mkdir -p $pkgdir/etc/pacman.d
+  install -m644 $srcdir/mirrorlist-ft $pkgdir/etc/pacman.d/
+  # customize mirrorlist to architecture
+  sed -i -e "s/@carch@/${CARCH}/g" $pkgdir/etc/pacman.d/mirrorlist-ft
+}
+
+md5sums=('b6d282d2338ee0cd67fe6449bbe4eb49')

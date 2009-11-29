@@ -1,0 +1,40 @@
+Server = http://ftp.yz.yamagata-u.ac.jp/pub/linux/archlinux/$repo/os/i686
+Server = http://program.net9.org/archlinux/www.archlinux.org/$repo/os/i686
+Server = http://mirrors.easynews.com/linux/archlinux/$repo/os/i686
+Server = http://www.schlunix.org/archlinux/$repo/os/i686
+Server = http://mirror.cs.vt.edu/pub/ArchLinux/$repo/os/i686
+Server = http://mirror.umoss.org/archlinux/$repo/os/i686
+Server = http://distro.ibiblio.org/pub/linux/distributions/archlinux/$repo/os/i686
+Server = http://ftp.hosteurope.de/mirror/ftp.archlinux.org/$repo/os/i686
+Server = http://ftp-stud.hs-esslingen.de/pub/Mirrors/archlinux/$repo/os/i686
+Server = http://ftp.nluug.nl/pub/metalab/distributions/archlinux/$repo/os/i686
+Server = http://ftp.ds.hj.se/pub/os/linux/archlinux/$repo/os/i686
+Server = http://ftp.sh.cvut.cz/MIRRORS/arch/$repo/os/i686
+Server = http://mirrors.gigenet.com/archlinux/$repo/os/i686
+Server = http://mirror.internode.on.net/pub/archlinux/$repo/os/i686
+Server = http://mirror.aarnet.edu.au/pub/archlinux/$repo/os/i686
+Server = http://ftp.gigabit.nu/$repo/os/i686
+Server = http://ftp.tu-chemnitz.de/pub/linux/archlinux/$repo/os/i686
+Server = http://ftp5.gwdg.de/pub/linux/archlinux/$repo/os/i686
+Server = http://ftp.ntua.gr/pub/linux/archlinux/$repo/os/i686
+Server = http://www.mirrorservice.org/sites/ftp.archlinux.org/$repo/os/i686
+Server = http://ftp.otenet.gr/linux/archlinux/$repo/os/i686
+Server = http://mirror.archlinux.no/$repo/os/i686
+Server = http://mir.archlinux.fr/$repo/os/i686
+Server = http://mirror.isoc.org.il/pub/archlinux/$repo/os/i686
+Server = http://archlinux.umflint.edu/$repo/os/i686
+
+Server = ftp://ftp.archlinux.org/$repo/os/i686
+Server = ftp://mirrors.kernel.org/archlinux/$repo/os/i686
+Server = http://mirrors.163.com/archlinux/$repo/os/i686
+Server = http://mirrors.sohu.com/archlinux/$repo/os/i686
+Server = http://mirrors.lupaworld.com/archlinux/$repo/os/i686
+Server = http://ftp.sjtu.edu.cn/pub/mirror2/www.archlinux.org/$repo/os/i686
+Server = ftp://cle.linux.org.tw/pub/Archlinux/$repo/os/i686
+Server = ftp://cle.linux.org.tw/pub2/Archlinux/$repo/os/i686
+
+[archlinuxfr]
+Server = http://repo.archlinux.fr/i686
+
+[archpkg-ft]
+Server = http://archpkg-ft.googlecode.com/svn/archpkg-ft/i686

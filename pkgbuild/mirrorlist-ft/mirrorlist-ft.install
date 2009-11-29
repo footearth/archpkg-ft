@@ -1,0 +1,13 @@
+post_install() {
+	mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-ft.old
+	mv /etc/pacman.d/mirrorlist-ft /etc/pacman.d/mirrorlist
+}
+
+post_upgrade() {
+	mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-ft.old
+	mv /etc/pacman.d/mirrorlist-ft /etc/pacman.d/mirrorlist
+}
+
+post_remove() {
+	mv /etc/pacman.d/mirrorlist-ft.old /etc/pacman.d/mirrorlist
+}
