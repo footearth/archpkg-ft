@@ -1,16 +1,17 @@
 # Maintainer: FooTearth <footearth@gmail.com>
+# Contributor: FooTearth <footearth@gmail.com>
 
-pkgname=rmirrors
+pkgname=rankmirrors-ft
 pkgver=0.1
 pkgrel=1
 pkgdesc="rank mirrors and set /etc/pacman.d/mirrors."
-arch=('i686' 'x86_64') # Binary app, doesn't work on x86_64
+arch=('i686' 'x86_64')
 url="http://www.debugmode.com/wink/"
 license=('GPL3')
-depends=(pacman python)
+depends=(pacman)
 # install=
-source=(http://archpkg-ft.googlecode.com/svn/backup/rmirrors.tar.bz2)
-md5sums=('61c0203d92781359141892781dcfcf8e')
+source=(http://archpkg-ft.googlecode.com/svn/pkgbuild/rankmirrors-ft/rankmirrors-ft.tar.bz2)
+md5sums=('182361640d48415191cee3226e8898b4')
 
 build(){
 	install -dm755 $pkgdir/usr/{bin,share}
