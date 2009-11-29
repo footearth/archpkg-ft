@@ -7,10 +7,10 @@ pkedesc="rank mirrors and set /etc/pacman.d/mirrors."
 arch=('i686' 'x86_64') # Binary app, doesn't work on x86_64
 url="http://www.debugmode.com/wink/"
 # license=('')
-depends=('pacman')
+depends=('pacman python')
 # install=
 source=(http://archpkg-ft.googlecode.com/svn/backup/rmirrors.tar.bz2)
-md5sums=('b4c85b5b47897316a7de0444a088bb6e')
+md5sums=('8a1ac4a1811d66f4def672dad265c805')
 
 build(){
 	install -dm755 $pkgdir/usr/{bin,share}
