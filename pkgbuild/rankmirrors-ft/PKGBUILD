@@ -16,5 +16,5 @@ md5sums=('cb3ef7cc9bcd8d56528190911f1f50ce')
 build(){
 	install -dm755 $pkgdir/usr/{bin,share}
 	cp -R $srcdir/$pkgname $pkgdir/usr/share
-	install -Dm755 $pkgdir/usr/share/$pkgname/${pkgname}.sh $pkgdir/usr/bin/$pkgname
+	install -Dm744 $pkgdir/usr/share/$pkgname/${pkgname}.sh $pkgdir/usr/bin/$pkgname
 }
