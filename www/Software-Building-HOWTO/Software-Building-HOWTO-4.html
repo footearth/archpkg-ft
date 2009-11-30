@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Building and Installing Software Packages for Linux: Prepackaged Binaries</TITLE>
+ <LINK HREF="Software-Building-HOWTO-5.html" REL=next>
+ <LINK HREF="Software-Building-HOWTO-3.html" REL=previous>
+ <LINK HREF="Software-Building-HOWTO.html#toc4" REL=contents>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></HEAD>
+<BODY>
+<A HREF="Software-Building-HOWTO-5.html">Next</A>
+<A HREF="Software-Building-HOWTO-3.html">Previous</A>
+<A HREF="Software-Building-HOWTO.html#toc4">Contents</A>
+<HR>
+<H2><A NAME="s4">4. 预先做好的二进制安装包</A></H2>
+
+<P>
+<P>
+<H2><A NAME="ss4.1">4.1 关于 rpm 的哪些错误？</A> </H2>
+
+<P>一些 Linux 用户很显然比较畏惧用源码来手动构建和安装包。不过值得高兴的是现在有流行的 rpm 和 deb 或新格式的 slp 包。 虽然当它可能的例子是，rpm 
+  安装正常运行平稳又快作为一个软件安装在某几个有名的操作系统，但还是应该对自安装的预先包装的二进制缺点提出一些思考。
+<P>首先，一个正常的软件包发布为 &quot;tarballs&quot;，并且这个二进制包发布的今天或几周，几个月后，一个 rpm 包作为为&quot;tarball&quot;的最后版本的镜象发布。所以，你可能要祈祷这个软件作为 
+  rpm 或 deb 早点出现，一些受欢迎的软件可能从来就没有做成 rpm 形势发布。 
+<P>第二，&quot;tarball&quot; 会更完善，它本身有更多的选项，从而能根据需求定制安装.二进制形势的 rpm 版本可能缺少完全功能的发布版本。rpm的来源发布者如果要制作包含等同于 
+  &quot;tarballs&quot; 的功能，则需要用其中之一的参数选项安装<B> rpm --recompile packagename.rpm</B> 
+  or <B>rpm --rebuild packagename.rpm</B> 。 
+<P>第三，一些预先做好的二进制包并不能适当的安装，假如安装有可能导致失败并产生 core-dump 。它们有可能需要你系统里不同的依赖关系库,或者并没准备好或者正巧损坏了 
+  。任何时候当安装 rpm 或 deb 你必须无条件的信任制作包的人。 
+<P>最后，它交给手头的源码去帮助，能从中学习到认为需要的东西。更多易懂的内容需要去你的存档二进制中去了解，而不是来源于 rpm 。
+<P>安装一个 rpm 包很容易想到的问题就是，假如安装需要依赖关系则会导致失败。同样，当 rpm 请求你系统中不同版本的库，那么安装将不能继续，除非你为错误的库位置创建连接符号到正确的位置。尽管 
+  rpm 安装很方便，但经常因为错误而导致失败更应该选择 &quot;tarball&quot; 方式来安装。 
+<P>你必须以 root 安装 <EM>rpm</EM> <EM>和 deb</EM> 。它需要必须的写权限，这会导致可能比较严重的安全漏洞。当你没注意的时候有可能会把系统二进制和库弄得乱七八糟，甚至安装特洛伊木马到系统里。因此获取 
+  <EM>rpm和 </EM><EM>deb</EM> 必须来自 &quot;受信任的源&quot;，任何时候你都要运行 '签名检查' (依靠 MD5 来校验)这个安装包， 
+  在安装之前运行 <B>rpm -K --checksig packagename.rpm</B> ，同样吐血推荐运行 <B>rpm -K --nopgp 
+  packagename.rpm</B>。ded 包同样的命令是 <B>dpkg -I | --info packagename.deb</B> 和<B>dpkg 
+  -e | --control packagename.deb</B> <code>。</code> 
+<P>
+<UL>
+<LI><CODE>rpm --checksig gnucash-1.1.23-4.i386.rpm</CODE>
+<BLOCKQUOTE><CODE>
+<PRE>
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<CODE>gnucash-1.1.23-4.i386.rpm: size md5 OK</CODE></LI>
+</UL>
+<P>
+<UL>
+<LI><CODE>rpm -K --nopgp gnucash-1.1.23-4.i386.rpm</CODE>
+<BLOCKQUOTE><CODE>
+<PRE>
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<CODE>gnucash-1.1.23-4.i386.rpm: size md5 OK</CODE></LI>
+</UL>
+<P>有些偏执狂会运行 (并且，在这个例子里有大量这样的偏执狂) <EM>unrpm</EM> <EM>和 rpmunpack</EM> 解压 rpm 包，从这里<A HREF="ftp://metalab.unc.edu/pub/Linux/utils/package">Sunsite 
+  utils/package directory</A> 检查包的可用性。 
+<P> <A HREF="mailto:klee@debian.org">Klee Diene</A> 有一个写好的实验 dpkgcert 包用来 校验安装的完整性。这些 
+  .deb 依赖 MD5 检查。可到 <A HREF="ftp://ftp.debian.org/pub/debian/project/experimental">Debian 
+  ftp archive</A> 去下载。当前包名称和版本是 <EM>dpkgcert_0.2-4.1_all.deb</EM> 。<A HREF="http://dpkgcert.jimpick.com">Jim 
+  Pick Software</A> 站点维护一个实验服务器数据库，用来提供给 dpkgcert 发证书给典型的 Debian 包安装。. 
+<P>在它们最简单的形势中，用命令 <B>rpm -i packagename.rpm</B> 和 <B>dpkg --install packagename.deb</B> 
+  会自动解包和安装。练习的时候要小心，这些操作可能会导致系统损坏！ 
+<P>注意上述这些警告同样适用于尽管范围比较小的 Slackware's pkgtool 安装。所有的“自动”安装软件都要小心谨慎。 
+<P><A HREF="http://www.people.cornell.edu/pages/rc42/program/martian.html">martian</A> 
+  和 <A HREF="http://kitenet.net/programs/alien/">alien</A>程序，允许转换 <EM>rpm</EM>, 
+  <EM>deb</EM>, Stampede <EM>slp</EM>, <EM>和 tar.gz</EM> 包格式.这可确定能兼容大部分的的 Linux 
+  发行版。 
+<P>仔细阅读 <EM>rpm</EM> <EM>和 dpkg</EM> 命令的 man pages 并参考 <A HREF="ftp://metalab.unc.edu/pub/Linux/docs/HOWTO/RPM-HOWTO">RPM 
+  HOWTO</A> ，TFUG 的 <A HREF="http://www.tfug.org/helpdesk/linux/rpm.html">Quick 
+  Guide to Red Hat's Package Manager</A> ，和<A HREF="http://www.debian.org/doc/FAQ/debian-faq-7.html"> 
+  The Debian Package Management Tools</A> 得到更多可用的信息。 
+<P>
+<P>
+<H2><A NAME="ss4.2">4.2 关于 rpm 的麻烦问题：一个例子</A> </H2>
+
+<P>
+<P> <A HREF="mailto:hubicka@paru.cas.cz">Jan Hubicka</A> 写过一个非常棒的软件叫 xaos. 在他的 
+  <A HREF="http://www.paru.cas.cz/~hubicka/XaoS">主页</A> 可下载， 有 .tar.gz 和 rpm 两种形势安装。为了方便，我们现在用 
+  rpm，而不是“tabll” 。 
+<P>不幸的是，rpm 版本的 xaos 无法安装，两个版本的 rpm 包都不行。 
+<P><B>rpm -i --test XaoS-3.0-1.i386.rpm</B>
+<BLOCKQUOTE><CODE>
+<PRE>
+error: failed dependencies:
+        libslang.so.0 is needed by XaoS-3.0-1
+        libpng.so.0 is needed by XaoS-3.0-1
+        libaa.so.1 is needed by XaoS-3.0-1
+</PRE>
+</CODE></BLOCKQUOTE>
+<P><B>rpm -i --test xaos-3.0-8.i386.rpm</B>
+<BLOCKQUOTE><CODE> 
+  <PRE>
+error: failed dependencies:
+        libaa.so.1 is needed by xaos-3.0-8
+</PRE>
+  这奇怪的现象是 </CODE><CODE>libpng.so.0</CODE> <CODE>和 libaa.so.1</CODE> 在所有的系统测试都在 
+  <CODE>/usr/lib</CODE>xaos的rpm包构建必须要不同版本的库文件，版本号码必要要一样。</BLOCKQUOTE>
+<P><CODE>作为测试，我们尝试安装 xaos-3.0-8.i386.rpm</CODE> 加个 <EM>--nodeps</EM> 选项强行安装。运行 
+  xaos 出现了错误<code>：</code>
+<BLOCKQUOTE><CODE> 
+  <PRE>
+xaos: error in loading shared libraries: xaos: undefined symbol: __fabsl
+</PRE>
+  让我们来尝试底层查明真相。运行ldd 在 xaos 二进制上，来查找它依赖的所有必须的共享库。运行 nm 在 /usr/lib/libaa.so.1 库上，列出它的链接 
+  __fabsl。当然，会出现的提示是来自其他库是损坏的……这将不能完成操作，只能替换其他的库。</CODE></BLOCKQUOTE>
+<P>够了! 下载一个 &quot;tarball&quot;， XaoS-3.0.tar.gz ，可以从 <A HREF="ftp://ftp.ta.jcu.cz/pub/linux/hubicka/XaoS/3.0">ftp 
+  site</A> 站点，或者它的主页下载到。尝试构建它(用 root 身份)运行 <B>make install</B> 。 
+<P>这个是预先做好的二进制包安装很麻烦的例子之一。 
+<P>
+<P>
+<P>
+<P>
+<HR>
+<A HREF="Software-Building-HOWTO-5.html">Next</A>
+<A HREF="Software-Building-HOWTO-3.html">Previous</A>
+<A HREF="Software-Building-HOWTO.html#toc4">Contents</A>
+</BODY>
+</HTML>

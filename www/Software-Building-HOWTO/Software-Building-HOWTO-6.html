@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Building and Installing Software Packages for Linux: Backward Compatibility With a.out Binaries</TITLE>
+ <LINK HREF="Software-Building-HOWTO-7.html" REL=next>
+ <LINK HREF="Software-Building-HOWTO-5.html" REL=previous>
+ <LINK HREF="Software-Building-HOWTO.html#toc6" REL=contents>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></HEAD>
+<BODY>
+<A HREF="Software-Building-HOWTO-7.html">Next</A>
+<A HREF="Software-Building-HOWTO-5.html">Previous</A>
+<A HREF="Software-Building-HOWTO.html#toc6">Contents</A>
+<HR>
+<H2><A NAME="s6">6. 向后兼容 a.out 二进制</A> </H2>
+
+<P>在一些较少的案例里，必须使用 a.out 二进制，或因为源代码不可用，否则因此为一些理由构建构来自源的新 ELF 二进制是不可能的。
+<P><br>
+  碰巧，ELF 安装几乎总是有一个/usr/i486-linuxaout/lib 目录里的a.out的完全设置。多个不同的 ELF 数种编码制为 a.out 
+  库，聪明的避免能引起的冲突， a.out 二进制在运行时因此能找到正确的库，但不可能总是这样的情况。<br>
+<P>注意需要把 a.out 支持编译内核里，或者作为模块加载。这也许必须重新编译内核才可以。另外一些 Linux 发行版需要专用的兼容包安装，比如 Debian 
+  的可执行 a.out X 应用程序 xcompat 。
+<P>&nbsp;
+<P>
+<H2><A NAME="ss6.1">6.1 一个例子</A> </H2>
+
+<P>
+<P>在后来几年Jerry Smith 写过一个方便的 <EM>rolodex</EM> 程序。虽然它使用图形库，但幸运地是也可有效地作为静态链接二进制 a.out 
+  格式，不幸地是，源码需要多个重新使用<EM>lesstif</EM> 库编译。还有更多地不幸是在一个 ELF 系统上的a.out 二进制炸弹有下面的错误消息：
+<BLOCKQUOTE><CODE>
+<PRE>
+xrolodex: can't load library '//lib/libX11.so.3'
+No such library
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>正好有这样一个库，在 /usr/i486-linuxaout/lib 里, 但 xrolodex 在运行的时候不能定位它。一个简单的解决方式是提供一个链接符号在 
+  /lib 目录里：
+<P><CODE>ln -s /usr/i486-linuxaout/lib/X11.so.3.1.0 libX11.so.3</CODE>
+<P>它从头至尾的运转是必须提供 libXt.so.3 和 libc.so.4 libraries 的类似链接。这需要 root 完成，当然，值得注意的是你应该确保完全可靠，你要对现存在的二进制不覆盖或引起版本号冲突。幸运的是，新的 
+  ELF 库有更高版本号，正好是预先想到的这个问题。
+<P>接下来创建这三个链接，<EM>xrolodex</EM> 运行非常好<em>。</em>
+<P><EM>xrolodex</EM> 包最初在 <A HREF="http://www.spectro.com/">Spectro</A> 公开，但在那里似乎消失了。它现在作为 
+  tar.Z 源码格式文件 [512k] 从 <A HREF="http://metalab.unc.edu/pub/Linux/apps/reminder/xrolodex.tar.z">Sunsite</A> 
+  下载。
+<P>
+<P>
+<P>
+<HR>
+<A HREF="Software-Building-HOWTO-7.html">Next</A>
+<A HREF="Software-Building-HOWTO-5.html">Previous</A>
+<A HREF="Software-Building-HOWTO.html#toc6">Contents</A>
+</BODY>
+</HTML>

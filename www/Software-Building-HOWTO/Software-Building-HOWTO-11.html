@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Building and Installing Software Packages for Linux: Third Example: Fortune</TITLE>
+ <LINK HREF="Software-Building-HOWTO-12.html" REL=next>
+ <LINK HREF="Software-Building-HOWTO-10.html" REL=previous>
+ <LINK HREF="Software-Building-HOWTO.html#toc11" REL=contents>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></HEAD>
+<BODY>
+<A HREF="Software-Building-HOWTO-12.html">Next</A>
+<A HREF="Software-Building-HOWTO-10.html">Previous</A>
+<A HREF="Software-Building-HOWTO.html#toc11">Contents</A>
+<HR>
+<H2><A NAME="s11">11. 第三个例子：Fortune</A></H2>
+
+<P>这个例子需要一些 C 语言知识。大部分 UNIX/Linux 软件是用 C 写的。而且任何人学习少量的 C 知识对于软件安装是非常有好处的。
+<P>非常有名的 <EM>fortune </EM>软件在每次 Linux 启动的时候显示幽默语句 "fortune cookie"。不幸的是 (有意的双关), 
+  尝试在 Red Hat 2.0.30内核的发行版上构建会产生一个重大错误。 
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+~/fortune# make all
+
+
+gcc -O2 -Wall -fomit-frame-pointer -pipe   -c fortune.c -o
+fortune.o
+fortune.c: In function `add_dir':
+fortune.c:551: structure has no member named `d_namlen'
+fortune.c:553: structure has no member named `d_namlen'
+make[1]: *** [fortune.o] Error 1
+make[1]: Leaving directory `/home/thegrendel/for/fortune/fortune'
+make: *** [fortune-bin] Error 2
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<P>
+<P>参看 <CODE>fortune.c</CODE> <code>有关的行在这里：</code>
+<P>
+<BLOCKQUOTE><CODE> 
+  <PRE>
+   if (dirent->d_namlen == 0)
+            continue;
+        name = copy(dirent->d_name, dirent->d_namlen);
+</PRE>
+  </CODE>我们需要在 dirent 结构里寻找，但是它没有所说的 fortune.c 文件，在其它所有源码文件里用 <B>grep dirent</B> 
+  命令也没看到。可是在 fortune.c 最上面有下面的行： </BLOCKQUOTE>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+#include &lt;dirent.h>
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>这看起来似乎是一个系统函数 include 文件，那么这个逻辑路径真的存在吗？在 <EM>/usr/include</EM> 目录里找到 <EM> dirent.h</EM> 
+  文件，但是这个文件不包含<CODE> dirent</CODE> 结构声明 。在那里提到的应该是是另一个 <EM> dirent.h</EM> <code>文件。</code>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+#include &lt;linux/dirent.h>
+</PRE>
+</CODE></BLOCKQUOTE>
+<P> 
+<P>最后，找到了 <EM>/usr/include/linux/dirent.h</EM> 文件，我们找到需要的结构声明。 
+<P>
+<BLOCKQUOTE><CODE> 
+  <PRE>
+struct dirent {
+        long            d_ino;
+        __kernel_off_t  d_off;
+        unsigned short  d_reclen;
+        char            d_name[256]; /* We must not include
+limits.h! */
+};
+</PRE>
+  </CODE>足以确定，结构声明中没包含 d_namelen ，但是两个“候选人”都相同。最有可能的是 <EM>d_reclen</EM> 。因为这个结构成员出现的特征或许和它的大概长度是一个短整数。另一个可能性，d_ino 
+  ，凭它的名字和类型判断可能是一个节点数字。事实上，我们正在处理一个 "directory entry"; 结构，而且这些元素表现一个文件的属性，它的名字，节点，和长度 
+  (在区段中) 。这些似乎证实了我们的猜测。</BLOCKQUOTE>
+<P>让我们编辑<CODE> fortune.c</CODE> 文件，并在 551 和 553 行修改两个 <EM>d_namelen</EM> 为 <EM>d_reclen</EM> 
+  。再重新 <EM>make all</EM> aga <B>。成功。</B> 它构建没有错误。我们现在从好运气中得到我们的"cheap thrills" 
+  。
+<P>
+<P>
+<HR>
+<A HREF="Software-Building-HOWTO-12.html">Next</A>
+<A HREF="Software-Building-HOWTO-10.html">Previous</A>
+<A HREF="Software-Building-HOWTO.html#toc11">Contents</A>
+</BODY>
+</HTML>

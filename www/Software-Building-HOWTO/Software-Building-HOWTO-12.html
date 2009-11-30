@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.9">
+ <TITLE>Building and Installing Software Packages for Linux: Fourth Example: Hearts</TITLE>
+ <LINK HREF="Software-Building-HOWTO-13.html" REL=next>
+ <LINK HREF="Software-Building-HOWTO-11.html" REL=previous>
+ <LINK HREF="Software-Building-HOWTO.html#toc12" REL=contents>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></HEAD>
+<BODY>
+<A HREF="Software-Building-HOWTO-13.html">Next</A>
+<A HREF="Software-Building-HOWTO-11.html">Previous</A>
+<A HREF="Software-Building-HOWTO.html#toc12">Contents</A>
+<HR>
+<H2><A NAME="s12">12.第四个例子：Hearts</A></H2>
+
+<P>这是以个很久以前的老游戏， 是 Bob Ankeney 在 80 年代的时候为 UNIX 写的， Mike Yang 在 1992 年修正过。现在是 <A HREF="mailto:badger@phylo.life.uiuc.edu">Jonathan 
+  Badger</A> 在维护它。它最初是美国俄勒冈州软件的 Don Backus 用更古老的 Pascal 程序写的，最后是 Jeff Hemmerling 
+  更新。最初作为多个玩家客户端一起参加，也可以作为单打模式和电脑对抗。它的画面非常精美，虽然这个游戏缺乏诡辩难度的特点，而且电脑玩家不是很厉害。 所有上述的，它似乎是过去 
+  UNIX 和 Linux 机器一个古来、正规的游戏。
+<P><br>
+  由于它的年龄和血统，这一个包特别地难以在一个 Linux 系统上构建。 它需要解决一个很长的一系列复杂的难题。它是耐心和决心的一种锻炼。
+<P><EM>开始之前确定某个已经安装了必须的图形库<b>。</b></EM>
+<P>
+<UL>
+<LI><B></B></LI>
+</UL>
+<P><B>xmkmf</B>
+<P><B>make</B>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+client.c: In function `read_card':
+client.c:430: `_tty' undeclared (first use in this function)
+client.c:430: (Each undeclared identifier is reported only once
+client.c:430: for each function it appears in.)
+client.c: In function `scan':
+client.c:685: `_tty' undeclared (first use in this function)
+make: *** [client.o] Error 1
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>这个原因在 <CODE>client.c</CODE> <code>文件：</code>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+#ifndef SYSV
+        (buf[2] != _tty.sg_erase) &amp;&amp; (buf[2] != _tty.sg_kill)) {
+ #else
+        (buf[2] != CERASE) &amp;&amp; (buf[2] != CKILL)) {
+#endif
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<P>
+<P>
+<UL>
+<LI><B></B></LI>
+</UL>
+<P> <CODE>在 client.c</CODE> <code>，增加</code>
+<BLOCKQUOTE><CODE>
+<PRE>
+#define SYSV
+</PRE>
+</CODE></BLOCKQUOTE>
+
+在 39 行，是通过上述提到的 <EM>_tty</EM>. 
+<P><B>make</B>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+client.c:41: sys/termio.h: No such file or directory
+make: *** [client.o] Error 1
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<UL>
+<LI><B></B></LI>
+</UL>
+<P>这个 include <CODE>文件 termio.h</CODE> 在一个 L<CODE>inux 系统的 /usr/include</CODE> 
+  目录。 应当在 <CODE>/usr/include/sys</CODE> 更适合，这个案例是一个很老的 UNIX 机器。因此修改 <CODE>client.c</CODE> 
+  的 41 行<code>：</code>
+<BLOCKQUOTE><CODE>
+<PRE>
+#include &lt;sys/termio.h>
+</PRE>
+</CODE></BLOCKQUOTE>
+
+<code>修改为</code> 
+<BLOCKQUOTE><CODE>
+<PRE>
+#include &lt;termio.h>
+</PRE>
+</CODE></BLOCKQUOTE>
+<P><B>make</B>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+gcc -o hearts -g      -L/usr/X11R6/lib client.o hearts.o select.o connect.o
+sockio.o start_dist.o  -lcurses -ltermlib       
+/usr/bin/ld: cannot open -ltermlib: No such file or directory
+collect2: ld returned 1 exit status
+make: *** [hearts] Error 1
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<P>
+<UL>
+<LI><B></B></LI>
+</UL>
+<P>现流行的 Linux 发行版使用 <EM>terminfo</EM> 和/<EM>或 termcap</EM> 数据库，比这个<EM> termlib</EM> 
+  更适合：
+<P><CODE>编辑 Makefile</CODE>. 
+<P> <code>第 655 行：</code>
+<BLOCKQUOTE><CODE>
+<PRE>
+CURSES_LIBRARIES = -lcurses -ltermlib
+</PRE>
+</CODE></BLOCKQUOTE>
+<P><code>修改为</code>
+<BLOCKQUOTE><CODE>
+<PRE>
+CURSES_LIBRARIES = -lcurses -ltermcap
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P><B>make</B>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+gcc -o xmhearts -g      -L/usr/X11R6/lib xmclient.o hearts.o select.o
+connect.o sockio.o start_dist.o gfx.o  -lXm_s -lXt -lSM -lICE -lXext -lX11
+-lPW       
+/usr/bin/ld: cannot open -lXm_s: No such file or directory
+collect2: ld returned 1 exit status
+</PRE>
+  主要缺少<em>的</em> </CODE><EM>lesstif</EM> <CODE>函数库是libXm</CODE> <CODE>，相当于 libXm_s</CODE> 
+  。因此编辑 <CODE>Makefile</CODE> ：</BLOCKQUOTE>
+<P>在 653 <code>行：</code>
+<BLOCKQUOTE><CODE>
+<PRE>
+XMLIB = -lXm_s $(XTOOLLIB) $(XLIB) -lPW
+</PRE>
+  修改为</CODE></BLOCKQUOTE>
+<BLOCKQUOTE><CODE>
+<PRE>
+XMLIB = -lXm $(XTOOLLIB) $(XLIB) -lPW
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P><B>make</B>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+gcc -o xmhearts -g      -L/usr/X11R6/lib xmclient.o hearts.o select.o
+connect.o sockio.o start_dist.o gfx.o  -lXm -lXt -lSM -lICE -lXext -lX11 -lPW       
+/usr/bin/ld: cannot open -lPW: No such file or directory
+collect2: ld returned 1 exit status
+make: *** [xmhearts] Error 1
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<P>
+<UL>
+<LI><B></B></LI>
+</UL>
+<P>这个通常是不可信的. 
+<P>这儿没有 <CODE>PW</CODE> 库文件。编辑 <CODE>Makefile</CODE> ： 
+<P>第 653 行：: 
+<BLOCKQUOTE><CODE>
+<PRE>
+XMLIB = -lXm $(XTOOLLIB) $(XLIB) -lPW
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>修改为：
+<BLOCKQUOTE><CODE>
+<PRE>
+XMLIB = -lXm $(XTOOLLIB) $(XLIB) -lPEX5
+</PRE>
+</CODE></BLOCKQUOTE>
+
+(<CODE>PEX5</CODE> 库受到的影响最接近到 <CODE>PW 。</CODE>) 
+<P>
+<P><B>make</B>
+<P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+rm -f xmhearts
+gcc -o xmhearts -g      -L/usr/X11R6/lib xmclient.o hearts.o select.o
+connect.o sockio.o start_dist.o gfx.o  -lXm -lXt -lSM -lICE -lXext -lX11 -lPEX5       
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>最终运转正常 (万岁！)<em>。</em>
+<P>
+<P>
+<P>
+<UL>
+  <LI><B></B></LI>
+</UL>
+<P><EM>安装：</EM> 
+<P>切换为 root <code>：</code>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+[root@localhost hearts]# make install
+install -c -s  hearts /usr/X11R6/bin/hearts
+install -c -s  xmhearts /usr/X11R6/bin/xmhearts
+install -c -s  xawhearts /usr/X11R6/bin/xawhearts
+install in . done
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<P>
+<P>
+<P>
+<UL>
+  <LI><B></B></LI>
+</UL>
+<P><em><b>测试运行：</b></em>
+<P><B>rehash</B>
+<P>(<CODE>我们运行的是 tcsh</CODE> shell.) 
+<P><B>xmhearts</B>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+localhost:~/% xmhearts
+Can't invoke distributor!
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<P>
+<P>
+<UL>
+<LI><B></B></LI>
+</UL>
+<P>从源码包里阅读 <CODE>README</CODE> <code>文件：</code>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+     Put heartsd, hearts_dist, and hearts.instr in the HEARTSLIB
+     directory defined in local.h and make them world-accessible.
+</PRE>
+</CODE></BLOCKQUOTE>
+<P> 
+<P><CODE>在 local.h</CODE> <code>文件的内容如下：</code>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+/* where the distributor, dealer and instructions live */
+
+#define HEARTSLIB "/usr/local/lib/hearts"
+</PRE>
+  这是</CODE> RTFM 的一流案例：</BLOCKQUOTE>
+<P> 
+<P>切换成 root 
+<P><B>cd /usr/local/lib</B>
+<P><B>mkdir hearts</B>
+<P><B>cd !$</B>
+<P>拷贝目标文件到这个目录
+<P><B>cp /home/username/hearts/heartsd .</B>
+<P><B>cp /home/username/hearts/hearts_dist .</B>
+<P><B>cp /home/username/hearts/hearts.instr .</B>
+<P>
+<P>
+<P>
+<UL>
+<LI><B></B></LI>
+</UL>
+<P><EM>用其他用户测试运行</EM> 
+<P><B>xmhearts</B>
+<P>它运转了一些时间，但大部分时候没有出现失败的消息。
+<P>
+<P>
+<P>
+<UL>
+  <LI><B></B></LI>
+</UL>
+<P>这个"distributor" 和 "dealer" 扫描硬件端口，我们应该因此猜想那些程序需要 root 特权。
+<P>尝试一下，切换到 <EM>root</EM> 
+<P><B>chmod u+s /usr/local/lib/heartsd</B>
+<P><B>chmod u+s /usr/local/lib/hearts_dist</B>
+<P>(注意这里，象先前的讨论，<EM>suid</EM> 二进制可能会导致安全漏洞。) 
+<P><B>xmhearts</B>
+<P>
+<P><EM>它最终工作正常！</EM> 
+<P>
+<P><CODE><EM>Hearts</EM> 在 <A HREF="ftp://metalab.unc.edu/pub/Linux/games/multiplayer/hearts.tgz">Sunsite</A> 
+  可以下载得到。 </CODE>
+<P>
+<P>
+<P>
+<HR>
+<A HREF="Software-Building-HOWTO-13.html">Next</A>
+<A HREF="Software-Building-HOWTO-11.html">Previous</A>
+<A HREF="Software-Building-HOWTO.html#toc12">Contents</A>
+</BODY>
+</HTML>
