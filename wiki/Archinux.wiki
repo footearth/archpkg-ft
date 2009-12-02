@@ -17,7 +17,7 @@
 		* [http://wiki.archlinux.org/index.php/Arch_Linux_%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87) Arch Linux 快速安装指南]
 		* [http://wiki.archlinux.org/index.php/Arch_%E5%AE%98%E6%96%B9%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)_(Deprecated) Arch 官方安装指南]
 		* [http://wiki.archlinux.org/index.php/ArchLinux%E5%AE%89%E8%A3%85%E5%AE%8C%E5%90%8E%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87) ArchLinux安装完后的小技巧]
-||[base base]||[base-devel base-devel]||
+||[base base]||[base_devel base-devel]||
 
 ==== ABS ====
 {{{
