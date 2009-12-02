@@ -1,0 +1,29 @@
+﻿{{{
+core/autoconf 2.65-1 (base-devel)
+    A GNU tool for automatically configuring source code
+core/automake 1.11-1 (base-devel)
+    A GNU tool for automatically creating Makefiles
+core/bin86 0.16.17-4 (base-devel)
+    A complete 8086 assembler and loader
+core/bison 2.4.1-1 (base-devel)
+    The GNU general-purpose parser generator
+core/ed 1.4-1 (base-devel)
+    A POSIX-compliant line editor
+core/fakeroot 1.14.3-1 (base-devel)
+    Gives a fake root environment, useful for building packages as a
+    non-privileged user
+core/flex 2.5.35-3 (base-devel)
+    A tool for generating text-scanning programs
+core/gcc 4.4.2-3 (base-devel)
+    The GNU Compiler Collection
+core/libtool 2.2.6b-1 (base-devel)
+    A generic library support script
+core/m4 1.4.13-1 (base-devel)
+    m4 macro processor
+core/make 3.81-4 (base-devel)
+    GNU make utility to maintain groups of programs
+core/patch 2.6-1 (base-devel)
+    A utility to apply patch files to original sources
+core/pkgconfig 0.23-1 (base-devel)
+    A system for managing library compile/link flags
+}}}

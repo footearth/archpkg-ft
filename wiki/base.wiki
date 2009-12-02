@@ -1,0 +1,200 @@
+﻿{{{
+core/acl 2.2.48-1 (base)
+    Library for filesystem ACL support
+core/attr 2.4.44-1 (base)
+    Extended attribute support library for ACL support
+core/bash 4.0.035-1 (base)
+    The GNU Bourne Again shell
+core/binutils 2.20-2 (base)
+    A set of programs to assemble and manipulate binary and object files
+core/bzip2 1.0.5-5 (base)
+    A high-quality data compression program
+core/coreutils 7.6-1 (base)
+    The basic file, shell and text manipulation utilities of the GNU operating system
+core/cpio 2.10-1 (base)
+    A tool to copy files into or out of a cpio or tar archive
+core/cracklib 2.8.13-2 (base)
+    Password Checking Library
+core/cryptsetup 1.0.7-1 (base)
+    Userspace setup tool for transparent encryption of block devices using the Linux 2.6 cryptoapi
+core/dash 0.5.5.1-2 (base)
+    A POSIX compliant shell that aims to be as small as possible
+core/db 4.8.24-1 (base)
+    The Berkeley DB embedded database system
+core/dbus-core 1.2.16-1 (base)
+    Freedesktop.org message bus system
+core/dcron 3.2-4 (base)
+    Dillon's Cron Daemon
+core/device-mapper 2.02.53-1 (base)
+    Device mapper userspace library and tools
+core/dhcpcd 5.1.3-1 (base)
+    RFC2131 compliant DHCP client daemon
+core/dialog 1.1_20080819-3 (base)
+    A tool to display dialog boxes from shell scripts
+core/diffutils 2.8.1-6 (base)
+    Utility programs used for creating patch files
+core/e2fsprogs 1.41.9-1 (base)
+    Ext2/3/4 filesystem utilities
+core/file 5.03-2 (base)
+    File type identification utility
+core/filesystem 2009.07-1 (base)
+    Base filesystem
+core/findutils 4.4.2-1 (base)
+    GNU utilities to locate files
+core/gawk 3.1.7-1 (base)
+    Gnu version of awk
+core/gcc-libs 4.4.2-3 (base)
+    Runtime libraries shipped by GCC for C and C++ languages
+core/gdbm 1.8.3-6 (base)
+    GNU database library
+core/gen-init-cpio 2.6.17-3 (base)
+    Program to compress initramfs images
+core/gettext 0.17-3 (base)
+    GNU internationalization library
+core/glibc 2.11-1 (base)
+    GNU C Library
+core/grep 2.5.4-3 (base)
+    A string search utility
+core/groff 1.20.1-3 (base)
+    GNU troff text-formatting system
+core/grub 0.97-16 (base)
+    A GNU multiboot boot loader
+core/gzip 1.3.13-1 (base)
+    GNU compression utility
+core/hdparm 9.27-1 (base)
+    A shell utility for manipulating Linux IDE drive/driver parameters
+core/initscripts 2009.08-1 (base)
+    System initialization/bootup scripts
+core/iputils 20071127-2 (base)
+    IP Configuration Utilities (and Ping)
+core/jfsutils 1.1.14-1 (base)
+    JFS filesystem utilities
+core/kbd 1.15-2 (base)
+    Keytable files and keyboard utilities
+core/kernel-headers 2.6.31.5-1 (base)
+    Kernel headers sanitized for use in userspace
+core/kernel26 2.6.31.6-1 (base)
+    The Linux Kernel and modules
+core/kernel26-firmware 2.6.31-1 (base)
+    The included firmware files of the Linux Kernel
+core/klibc 1.5.15-3 (base)
+    A minimal libc made for early-userspace
+core/klibc-extras 2.5-4 (base)
+    Extra apps for klibc early-userspace
+core/klibc-kbd 1.15.20080312-10 (base)
+    Keytable files and keyboard utilities
+core/klibc-module-init-tools 3.8-1 (base)
+    Utilities for inserting and removing modules from the Linux kernel
+core/klibc-udev 141-3 (base)
+    udev compiled for klibc
+core/less 436-1 (base)
+    A terminal based program for viewing text files
+core/libarchive 2.7.1-1 (base)
+    library that can create and read several streaming archive formats
+core/libfetch 2.26-1 (base)
+    URL based download library
+core/libgcrypt 1.4.4-2 (base)
+    a general purpose crypto library based on the code used
+core/libgpg-error 1.7-2 (base)
+    Support library for libgcrypt
+core/libpcap 1.0.0-1 (base)
+    A system-independent interface for user-level packet capture
+core/libusb 0.1.12-3 (base)
+    Library to enable user space application programs to communicate with USB devices
+core/licenses 2.5-1 (base)
+    The standard licenses distribution package
+core/logrotate 3.7.8-1 (base)
+    Rotates system logs automatically
+core/lvm2 2.02.53-1 (base)
+    Logical Volume Manager 2 utilities
+core/lzo2 2.03-1 (base)
+    Portable lossless data compression library written in ANSI C
+core/mailx 8.1.1-7 (base)
+    A commandline utility for sending email
+core/man-db 2.5.6-1 (base)
+    A utility for reading man pages
+core/man-pages 3.23-1 (base)
+    Linux man pages
+core/mdadm 2.6.9-1 (base)
+    A tool for managing/monitoring Linux md device arrays, also known as Software RAID
+core/mkinitcpio 0.5.26-1 (base)
+    Advanced, modular initramfs image creation utility
+core/mlocate 0.22.2-2 (base)
+    Faster merging drop-in for slocate
+core/module-init-tools 3.11.1-1 (base)
+    utilities needed by Linux systems for managing loadable kernel modules
+core/nano 2.0.9-2 (base)
+    Pico editor clone with enhancements
+core/ncurses 5.7-2 (base)
+    System V Release 4.0 curses emulation library
+core/net-tools 1.60-14 (base)
+    Configuration tools for Linux networking
+core/pacman 3.3.3-1 (base)
+    A library-based package manager with dependency support
+core/pacman-mirrorlist 20090616-1 (base)
+    Arch Linux mirror list for use by pacman
+core/pam 1.1.0-1 (base)
+    PAM (Pluggable Authentication Modules) library
+core/pciutils 3.1.4-1 (base)
+    PCI bus configuration space access library and tools
+core/pcmciautils 015-2 (base)
+    Utilities for inserting and removing PCMCIA cards
+core/pcre 8.00-1 (base)
+    A library that implements Perl 5-style regular expressions
+core/perl 5.10.1-5 (base)
+    Practical Extraction and Report Language
+core/popt 1.15-1 (base)
+    A commandline option parser
+core/ppp 2.4.4-9 (base)
+    A daemon which implements the PPP protocol for dial-up networking
+core/procinfo 19-3 (base)
+    Displays useful information from /proc
+core/procps 3.2.8-1 (base)
+    Utilities for monitoring your system and processes on your system
+core/psmisc 22.8-1 (base)
+    Miscellaneous procfs tools
+core/readline 6.0.004-1 (base)
+    GNU readline library
+core/reiserfsprogs 3.6.21-2 (base)
+    Reiserfs utilities
+core/rp-pppoe 3.10-1 (base)
+    Roaring Penguin's Point-to-Point Protocol over Ethernet client
+core/sdparm 1.04-1 (base)
+    An utility similar to hdparm but for SCSI devices
+core/sed 4.2.1-1 (base)
+    GNU stream editor
+core/shadow 4.1.4.2-1 (base)
+    Shadow password file utilities
+core/sysfsutils 2.1.0-5 (base)
+    System Utilities Based on Sysfs
+core/syslog-ng 3.0.4-1 (base)
+    Next-generation syslogd with advanced networking and filtering capabilities
+core/sysvinit 2.86-5 (base)
+    Linux System V Init
+core/tar 1.22-1 (base)
+    Utility used to store, backup, and transport files
+core/tcp_wrappers 7.6-10 (base)
+    Monitors and Controls incoming TCP connections
+core/texinfo 4.13a-3 (base)
+    Utilities to work with and produce manuals, ASCII text, and on-line documentation from a single source file
+core/tzdata 2009s-1 (base)
+    Sources for time zone and daylight saving time data
+core/udev 146-2 (base)
+    The userspace dev tools (udev)
+core/usbutils 0.86-2 (base)
+    USB Device Utilities
+core/util-linux-ng 2.16-1 (base)
+    Miscellaneous system utilities for Linux
+core/vi 050325-1 (base)
+    The original ex/vi text editor.
+core/wget 1.12-1 (base)
+    A network utility to retrieve files from the Web
+core/which 2.20-1 (base)
+    A utility to show the full path of commands
+core/wpa_supplicant 0.6.9-2 (base)
+    A utility providing key negotiation for WPA wireless networks
+core/xfsprogs 3.0.5-1 (base)
+    XFS filesystem utilities
+core/zlib 1.2.3.3-3 (base)
+    A compression/decompression Library
+}}}
