@@ -5,6 +5,7 @@
 Arch Linux 安装光盘中 base 包组中 包含如下99个包:
 
 {{{
+
 core/readline 6.0.004-1 (base)
     GNU readline library
 core/bash 4.0.035-1 (base)
@@ -13,6 +14,7 @@ core/bash 4.0.035-1 (base)
 core/dash 0.5.5.1-2 (base)
     A POSIX compliant shell that aims to be as small as possible
 	( /usr/bin/dash )
+
 core/gawk 3.1.7-1 (base)
     Gnu version of awk
 core/sed 4.2.1-1 (base)
@@ -21,6 +23,7 @@ core/perl 5.10.1-5 (base)
     Practical Extraction and Report Language
 core/pcre 8.00-1 (base)
 	Perl兼容正则表达式库
+
 core/binutils 2.20-2 (base)
     GNU binutils: 一组开发工具，包括连接器，汇编器和其他用于目标文件和档案的工具。
 	A set of programs to assemble and manipulate binary and object files
@@ -38,7 +41,8 @@ core/coreutils 7.6-1 (base)
 	mktemp nice nl nohup od paste pathchk pinky pr printenv printf
 	ptx runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum
 	shuf sleep sort split stat stdbuf sum tac tail tee test timeout
-	truncate tsort tty unexpand uniq unlink users wc who whoami yes )
+	truncate tsort tty unexpand uniq unlink users wc who whoami yes
+	  /usr/sbin/chroot )
 core/util-linux-ng 2.16-1 (base)
     Miscellaneous system utilities for Linux
 	( /bin/arch dmesg more mount umount
@@ -54,16 +58,19 @@ core/util-linux-ng 2.16-1 (base)
 	ul uuidgen whereis write
 	  /usr/sbin/fdformat ldattach ramsize rdev readprofile
 	rootflags rtcwake tunelp uuidd vidmode )
+core/less 436-1 (base)
+    A terminal based program for viewing text files
+
 core/ncurses 5.7-2 (base)
     System V Release 4.0 curses emulation library
-	( /usr/bin/captoinfo clear infocmp infotocap
+	( /bin/tput
+	  /usr/bin/captoinfo clear infocmp infotocap
 	ncursesw5-config reset tic toe tset )
 core/dialog 1.1_20080819-3 (base)
 	安装系统过程中蓝色的交互界面就是它做的
     A tool to display dialog boxes from shell scripts
 	( /usr/bin/dialog )
-core/less 436-1 (base)
-    A terminal based program for viewing text files
+
 core/cpio 2.10-1 (base)
 	cpio 归档工具
     A tool to copy files into or out of a cpio or tar archive
@@ -82,12 +89,14 @@ core/bzip2 1.0.5-5 (base)
 	  /usr/bin/bzdiff bzgrep bzmore )
 core/tar 1.22-1 (base)
     Utility used to store, backup, and transport files
+
 core/db 4.8.24-1 (base)
 	伯克利 数据库
     The Berkeley DB embedded database system
 	( /usr/bin
 	db_archive db_checkpoint db_deadlock db_dump db_hotbackup db_load
 	db_printlog db_recover db_sql db_stat db_upgrade db_verify )
+
 core/dcron 3.2-4 (base)
     Dillon_s Cron Daemon
 	( /usr/bin/crontab )
