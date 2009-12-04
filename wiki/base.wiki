@@ -211,6 +211,7 @@ core/mailx 8.1.1-7 (base)
     ( /usr/bin/mail )
 }}}
 
+{{{
 Arch 系统相关
 core/filesystem 2009.07-1 (base)
     这个应该是 Arch 特有的，用来安装系统文件
