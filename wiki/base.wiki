@@ -1,11 +1,11 @@
-﻿{{{
+﻿
+{{{
     pacman -Ql pkgname | grep bin/
 }}}
 
 Arch Linux 安装光盘中 base 包组中 包含如下99个包:
 
 {{{
-
 core/readline 6.0.004-1 (base)
     GNU readline library
     ( /etc/inputrc )
@@ -16,16 +16,9 @@ core/bash 4.0.035-1 (base)
 core/dash 0.5.5.1-2 (base)
     A POSIX compliant shell that aims to be as small as possible
     ( /usr/bin/dash )
+}}}
 
-core/gawk 3.1.7-1 (base)
-    Gnu version of awk
-core/sed 4.2.1-1 (base)
-    GNU stream editor
-core/perl 5.10.1-5 (base)
-    Practical Extraction and Report Language
-core/pcre 8.00-1 (base)
-    Perl兼容正则表达式库
-
+{{{
 core/binutils 2.20-2 (base)
     GNU binutils: 一组开发工具，包括连接器，汇编器和其他用于目标文件和档案的工具。
     A set of programs to assemble and manipulate binary and object files
@@ -62,7 +55,46 @@ core/util-linux-ng 2.16-1 (base)
     rootflags rtcwake tunelp uuidd vidmode )
 core/less 436-1 (base)
     A terminal based program for viewing text files
+core/which 2.20-1 (base)
+    A utility to show the full path of commands
+core/mlocate 0.22.2-2 (base)
+    文件管理
+    Faster merging drop-in for slocate
+    ( /usr/bin/locate slocate updatedb )
+core/findutils 4.4.2-1 (base)
+    查找工具
+    GNU utilities to locate files
+    ( /usr/bin/find oldfind xargs )
+core/grep 2.5.4-3 (base)
+    A string search utility
+core/sed 4.2.1-1 (base)
+    GNU stream editor
+core/gawk 3.1.7-1 (base)
+    Gnu version of awk
+core/diffutils 2.8.1-6 (base)
+    Utility programs used for creating patch files
+    ( /usr/bin/cmp diff diff3 sdiff )
+core/file 5.03-2 (base)
+    检查文件类型
+    File type identification utility
+    ( /usr/bin/file )
+core/perl 5.10.1-5 (base)
+    Practical Extraction and Report Language
+core/pcre 8.00-1 (base)
+    Perl兼容正则表达式库
+}}}
 
+{{{
+core/groff 1.20.1-3 (base)
+    格式化文本系统
+    GNU troff text-formatting system
+core/texinfo 4.13a-3 (base)
+    Utilities to work with and produce manuals, ASCII text, and on-line documentation from a single source file
+    ( /usr/bin/info infokey install-info makeinfo
+    pdftexi2dvi texi2dvi texi2pdf texindex )
+core/gettext 0.17-3 (base)
+    GNU i18n 套件
+    GNU internationalization library
 core/ncurses 5.7-2 (base)
     System V Release 4.0 curses emulation library
     ( /bin/tput
@@ -72,7 +104,9 @@ core/dialog 1.1_20080819-3 (base)
     安装系统过程中蓝色的交互界面就是它做的
     A tool to display dialog boxes from shell scripts
     ( /usr/bin/dialog )
+}}}
 
+{{{
 core/cpio 2.10-1 (base)
     cpio 归档工具
     A tool to copy files into or out of a cpio or tar archive
@@ -91,52 +125,31 @@ core/bzip2 1.0.5-5 (base)
       /usr/bin/bzdiff bzgrep bzmore )
 core/tar 1.22-1 (base)
     Utility used to store, backup, and transport files
+core/wget 1.12-1 (base)
+    A network utility to retrieve files from the Web
+}}}
 
+{{{
 core/db 4.8.24-1 (base)
     伯克利 数据库
     The Berkeley DB embedded database system
     ( /usr/bin
     db_archive db_checkpoint db_deadlock db_dump db_hotbackup db_load
     db_printlog db_recover db_sql db_stat db_upgrade db_verify )
+core/gdbm 1.8.3-6 (base)
+    GNU database library
+}}}
 
-core/dcron 3.2-4 (base)
-    Dillon_s Cron Daemon
-    ( /usr/bin/crontab )
-core/diffutils 2.8.1-6 (base)
-    Utility programs used for creating patch files
-    ( /usr/bin/cmp diff diff3 sdiff )
-core/file 5.03-2 (base)
-    检查文件类型
-    File type identification utility
-    ( /usr/bin/file )
-core/grep 2.5.4-3 (base)
-    A string search utility
-core/which 2.20-1 (base)
-    A utility to show the full path of commands
-core/mlocate 0.22.2-2 (base)
-    文件管理
-    Faster merging drop-in for slocate
-    ( /usr/bin/locate slocate updatedb )
-core/findutils 4.4.2-1 (base)
-    查找工具
-    GNU utilities to locate files
-    ( /usr/bin/find oldfind xargs )
-
+{{{
 core/man-db 2.5.6-1 (base)
     A utility for reading man pages
     ( /usr/bin/apropos catman convert-mans
     lexgrog man mandb manpath whatis )
 core/man-pages 3.23-1 (base)
     Linux man pages
+}}}
 
-core/groff 1.20.1-3 (base)
-    格式化文本系统
-    GNU troff text-formatting system
-core/texinfo 4.13a-3 (base)
-    Utilities to work with and produce manuals, ASCII text, and on-line documentation from a single source file
-    ( /usr/bin/info infokey install-info makeinfo
-    pdftexi2dvi texi2dvi texi2pdf texindex )
-
+{{{
 core/grub 0.97-16 (base)
     A GNU multiboot boot loader
 core/mkinitcpio 0.5.26-1 (base)
@@ -148,12 +161,6 @@ core/module-init-tools 3.11.1-1 (base)
       /sbin/depmod insmod modinfo modprobe )
 core/klibc-module-init-tools 3.8-1 (base)
     Utilities for inserting and removing modules from the Linux kernel
-core/pciutils 3.1.4-1 (base)
-    PCI bus configuration space access library and tools
-    ( /usr/sbin/lspci setpci update-pciids )
-core/procinfo 19-3 (base)
-    Displays useful information from /proc
-    ( /usr/bin/lsdev procinfo socklist )
 core/procps 3.2.8-1 (base)
     Utilities for monitoring your system and processes on your system
     ( /bin/kill ps
@@ -163,6 +170,9 @@ core/procps 3.2.8-1 (base)
 core/psmisc 22.8-1 (base)
     Miscellaneous procfs tools
     ( /usr/bin/fuser killall peekfd pstree pstree.x11 )
+core/dcron 3.2-4 (base)
+    Dillon_s Cron Daemon
+    ( /usr/bin/crontab )
 core/shadow 4.1.4.2-1 (base)
     Shadow password file utilities
     ( /bin/groups login
@@ -182,12 +192,13 @@ core/tzdata 2009s-1 (base)
     Sources for time zone and daylight saving time data
     ( /usr/bin/tzdata
       /usr/sbin/zdump zic)
+}}}
+
+{{{
 core/nano 2.0.9-2 (base)
     Pico editor clone with enhancements
 core/vi 050325-1 (base)
     The original ex/vi text editor.
-core/wget 1.12-1 (base)
-    A network utility to retrieve files from the Web
 core/logrotate 3.7.8-1 (base)
     Rotates system logs automatically
     ( /sbin/logrotate )
@@ -231,13 +242,8 @@ core/lvm2 2.02.53-1 (base)
     Logical Volume Manager 2 utilities
 
 库相关
-core/gdbm 1.8.3-6 (base)
-    GNU database library
 core/gcc-libs 4.4.2-3 (base)
     Runtime libraries shipped by GCC for C and C++ languages
-core/gettext 0.17-3 (base)
-    GNU i18n 套件
-    GNU internationalization library
 core/glibc 2.11-1 (base)
     GNU C Library
 core/zlib 1.2.3.3-3 (base)
@@ -335,6 +341,12 @@ core/libgcrypt 1.4.4-2 (base)
     a general purpose crypto library based on the code used
 
 硬件相关 HAL d-bus udev
+core/pciutils 3.1.4-1 (base)
+    PCI bus configuration space access library and tools
+    ( /usr/sbin/lspci setpci update-pciids )
+core/procinfo 19-3 (base)
+    Displays useful information from /proc
+    ( /usr/bin/lsdev procinfo socklist )
 core/udev 146-2 (base)
     The userspace dev tools (udev)
 core/dbus-core 1.2.16-1 (base)
@@ -351,3 +363,4 @@ core/kbd 1.15-2 (base)
     Keytable files and keyboard utilities
 core/klibc-kbd 1.15.20080312-10 (base)
     Keytable files and keyboard utilities
+}}}
