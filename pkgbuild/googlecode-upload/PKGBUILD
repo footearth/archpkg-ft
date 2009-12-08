@@ -3,7 +3,7 @@
 pkgname=googlecode-upload
 pkgver=0.1
 pkgrel=1
-pkedesc="Script for uploading files to Google Code project."
+pkgdesc="Script for uploading files to Google Code project."
 arch=('i686' 'x86_64')
 url="http://archpkg-ft.googlecode.com"
 license=('Apache2')
