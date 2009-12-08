@@ -3,7 +3,7 @@
 pkgname=phsopcast
 pkgver=0.1
 pkgrel=1
-# pkedesc=""
+# pkgdesc=""
 arch=('i686')
 url="http://archpkg-ft.googlecode.com"
 license=('GPL3')

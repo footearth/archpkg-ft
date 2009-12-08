@@ -3,7 +3,7 @@
 pkgname=peanuthull
 pkgver=1.1
 pkgrel=1
-pkedesc="A free DDNS (Dynamic DNS) client software."
+pkgdesc="A free DDNS (Dynamic DNS) client software."
 arch=('i686') # Binary app, doesn't work on x86_64
 url="http://www.oray.cn"
 # license=('')
