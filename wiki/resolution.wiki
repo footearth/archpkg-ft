@@ -30,6 +30,25 @@ sudo vbetest
 
 === Uvesafb ===
 
+    [http://sinolog.it/?p=846 参考 <<Thinkpad X200上使Archlinux的framebuffer支持宽屏分辨率>> from:牧马志 Lenin's Blog]
+
+{{{
+#去除 /boot/grub/menu.lst 中vga参数
+
+#安装一个Uvesafb要用到的守护进程v86d
+sudo tupac -S v86d
+
+#{{{修改“/etc/mkinitcpio.conf”在“HOOKS”里的“udev”后面加上“v86d”}}}
+
+sudo vim /etc/mkinitcpio.conf
+HOOKS="base udev v86d autodetect pata scsi sata filesystems"
+
+sudo vim /etc/modprobe.d/uvesafb
+options uvesafb mode_option=1680x1050-32 scroll=ywrap
+
+mkinitcpio -p kernel26
+}}}
+
 == xrandr ==
 
 === Virtual Box 支持 ===
