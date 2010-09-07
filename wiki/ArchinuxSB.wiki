@@ -7,6 +7,5 @@
 	* 安装软件
 	* 桌面配置
 	*
-	* [Links Links]
 	* [Admin Admin]
 	* [http://archpkg-ft.googlecode.com/svn/ SVN-HTTP]
