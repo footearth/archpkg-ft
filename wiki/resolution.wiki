@@ -1,9 +1,11 @@
+控制台及桌面环境分辨率配置
 
 == framebuffer ==
 
 === Virtual Box 支持 ===
 
     CMD 到 Virtual Box 的安装目录
+
 {{{
 vboxmanage setextradata "Arch" "CustomVideoMode1" "1680x1050x32"
 }}}
@@ -19,6 +21,7 @@ sudo hwinfo --framebuffer | grep Mode
 === vbetest ===
 
     要使用的分辨率前的数字加上512即为VGA参数值 {{{/boot/grub/menu.lst}}}
+
 {{{
 pacman -S lrmi
 
@@ -32,6 +35,7 @@ sudo vbetest
 === Virtual Box 支持 ===
 
     安装显卡驱动,加载增强功能镜像文件
+
 {{{
 #安装依赖 gksu
 sudo pacman -S gksu
