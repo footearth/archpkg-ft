@@ -1,0 +1,45 @@
+
+== framebuffer ==
+
+=== Virtual Box 支持 ===
+
+    CMD 到 Virtual Box 的安装目录
+{{{
+vboxmanage setextradata "Arch" "CustomVideoMode1" "1680x1050x32"
+}}}
+
+=== hwinfo ===
+
+{{{
+pacman -S hwinfo
+
+sudo hwinfo --framebuffer | grep Mode
+}}}
+
+=== vbetest ===
+
+    要使用的分辨率前的数字加上512即为VGA参数值 {{{/boot/grub/menu.lst}}}
+{{{
+pacman -S lrmi
+
+sudo vbetest
+}}}
+
+=== Uvesafb ===
+
+== xrandr ==
+
+=== Virtual Box 支持 ===
+
+    安装显卡驱动,加载增强功能镜像文件
+{{{
+#安装依赖 gksu
+sudo pacman -S gksu
+
+#使用官方自带安装脚本
+mount /dev/cdrom0 /media/cd
+cd /media/cd
+sudo . autorun.sh
+}}}
+
+=== xrandr ===
