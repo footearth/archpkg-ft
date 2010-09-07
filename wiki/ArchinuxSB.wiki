@@ -4,8 +4,13 @@
 	* 简介
 	* 安装指南
 	* [resolution 分辨率]
-	* 安装软件
+	* 安装基本
 	* 桌面配置
+	* 常用软件
+	* 服务
+	* 开发工具
+	* 小技巧
+	* archpkg-ft
 	*
 	* [Admin Admin]
 	* [http://archpkg-ft.googlecode.com/svn/ SVN-HTTP]
