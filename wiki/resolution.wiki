@@ -38,7 +38,7 @@ sudo vbetest
 #安装一个Uvesafb要用到的守护进程v86d
 sudo tupac -S v86d
 
-#{{{修改“/etc/mkinitcpio.conf”在“HOOKS”里的“udev”后面加上“v86d”}}}
+#修改“/etc/mkinitcpio.conf”在“HOOKS”里的“udev”后面加上“v86d”
 
 sudo vim /etc/mkinitcpio.conf
 HOOKS="base udev v86d autodetect pata scsi sata filesystems"
