@@ -47,3 +47,19 @@ sudo . autorun.sh
 }}}
 
 === xrandr ===
+
+{{{
+
+>> cvt 1680 1050
+# 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz
+Modeline "1680x1050_60.00"  146.25  1680 1784 1960 2240  1050 1053 1059 1089 -hsync +vsync
+
+#新模式
+xrandr --newmode 1680x1050_60.00 146.25 1680 1784 1960 2240 1050 1053 1059 1089 -hsync +vsync
+#增加模式
+xrandr --addmode VBOX1 1680x1050_60.00
+#应用模式
+xrandr --output VBOX1 --mode 1680x1050_60.00
+#删除模式
+xrandr --rmmode 1680x1050_60.00
+}}}
