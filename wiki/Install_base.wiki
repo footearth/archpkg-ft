@@ -1,0 +1,68 @@
+
+== 安装基本系统 ==
+
+=== 光碟安装===
+
+=== U盘安装===
+
+=== 硬盘安装===
+
+== 添加用户 ==
+
+    * add users
+{{{
+#!/bin/bash
+
+useradd -mG users,audo,optical,storage,wheel -s /bin/bash footearth
+}}}
+    * sudo
+{{{
+visudo
+footearth ALL=(ALL) NOPASSWD: SETENV:ALL
+}}}
+{{{
+#!/bin/bash
+
+chmod +w /etc/suders
+sed '/^root/a\
+footearth ALL=(ALL) NOPASSWD: SETENV:ALL' /etc/sudoers > /tmp/sudoers
+mv /tmp/sudoers /etc/sudoers
+chmod 0440 /etc/sudoers
+}}}
+
+== 安装包管理增强工具 yaourt & tupac ==
+
+{{{
+vi /etc/pacman.d/mirrorlist
+
+[archlinuxfr]
+Server = http://repo.archlinux.fr/i686
+
+sudo pacman -Sy yaourt
+sudo yaourt -S tupac
+}}}
+
+== 安装其他必需包 ==
+
+    * bash-completion tree
+    * dbus hal ntfs-3g
+    * unrar unzip p7zip upx
+    * axel
+    * perl php python ruby jdk lua gcc gdb make cmake sqlite3 mysql subversion
+    * gtk2-perl zenity wxgtk boost wxpython
+    * alsa-tuils
+    * xf86-video-intel
+    * Virtual Box 显卡驱动
+        * gksu
+    * wqy-bitmapfont wqy-zenhei ttf-ms-fonts
+    *
+    * xorg libgl mesa
+    * gnome-themes gnome-icon-theme gtk-rezlooks-engine gtk-xfce-engine
+    * openbox obconf obmenu lxappearance lxrandr lxpanel lxtask pcmanfm
+    * tilda lilyterm
+    * vim gvim
+    * firefox firefox-i18n smplayer gecko-mediaplayer
+    * fcitx
+    *
+    * rdesktop xcompmgr gmrun aumix-gtk gnome-device-manager convmv sopcast scrot
+
