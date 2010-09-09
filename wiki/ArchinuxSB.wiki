@@ -4,7 +4,7 @@
 	* 简介
 	* 安装指南
 	* [resolution 分辨率]
-	* 安装基本
+	* [Install_base 安装基本]
 	* [Desktop 桌面环境]
 	* 常用软件
 	* 服务
