@@ -12,10 +12,8 @@ dd if=<imagefile> of=/dev/<yourdevice> bs=1M
 
 {{{
 menuentry "Windows XP" {
-root (hd0, 0)
-makeactive
+set root=(hd0,1)
 chainloader +1
-boot
 }
 }}}
 
