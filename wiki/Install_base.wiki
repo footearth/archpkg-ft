@@ -11,10 +11,12 @@ dd if=<imagefile> of=/dev/<yourdevice> bs=1M
 === grub2 ===
 
 {{{
+menuentry "Windows XP" {
 root (hd0, 0)
 makeactive
 chainloader +1
 boot
+}
 }}}
 
 == 添加用户 ==
