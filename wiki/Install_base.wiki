@@ -43,6 +43,8 @@ chmod 0440 /etc/sudoers
 == 安装包管理增强工具 yaourt & tupac ==
 
 {{{
+XferCommand = /usr/bin/axel -o %o %u
+
 vi /etc/pacman.d/mirrorlist
 
 [archlinuxfr]
