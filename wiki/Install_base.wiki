@@ -1,11 +1,21 @@
-
 == 安装基本系统 ==
 
 === 光碟安装===
 
 === U盘安装===
 
-=== 硬盘安装===
+{{{
+dd if=<imagefile> of=/dev/<yourdevice> bs=1M
+}}}
+
+=== grub2 ===
+
+{{{
+root (hd0, 0)
+makeactive
+chainloader +1
+boot
+}}}
 
 == 添加用户 ==
 
