@@ -1,0 +1,45 @@
+﻿{{{
+core/gcc 4.4.2-3 (base-devel)
+> The GNU Compiler Collection
+> ( /usr/bin/c++ cc cpp g++ gcc gccbug gcov
+> i686-pc-linux-gnu-c++ i686-pc-linux-gnu-g++
+> i686-pc-linux-gnu-gcc i686-pc-linux-gnu-gcc-4.4.2 )
+core/ed 1.4-1 (base-devel)
+> A POSIX-compliant line editor
+> ( /bin/ed red )
+core/make 3.81-4 (base-devel)
+> GNU make utility to maintain groups of programs
+> ( /bin/make )
+core/autoconf 2.65-1 (base-devel)
+> A GNU tool for automatically configuring source code
+> ( /usr/bin/autoconf autoheader autom4te
+> autoreconf autoscan autoupdate ifnames )
+core/automake 1.11-1 (base-devel)
+> A GNU tool for automatically creating Makefiles
+> ( /usr/bin/aclocal aclocal-1.11 automake automake-1.11 )
+core/bin86 0.16.17-4 (base-devel)
+> A complete 8086 assembler and loader
+> ( /usr/bin/as86 ld86 nm86 objdump86 size86 )
+core/bison 2.4.1-1 (base-devel)
+> The GNU general-purpose parser generator
+> ( /usr/bin/bison yacc )
+core/fakeroot 1.14.3-1 (base-devel)
+> Gives a fake root environment, useful for building packages as a
+> non-privileged user
+> ( /usr/bin/faked fakeroot )
+core/flex 2.5.35-3 (base-devel)
+> A tool for generating text-scanning programs
+> ( /usr/bin/flex lex )
+core/libtool 2.2.6b-1 (base-devel)
+> A generic library support script
+> ( /usr/bin/libtool libtoolize )
+core/m4 1.4.13-1 (base-devel)
+> m4 macro processor
+> ( /usr/bin/m4 )
+core/patch 2.6-1 (base-devel)
+> A utility to apply patch files to original sources
+> ( /usr/bin/patch )
+core/pkgconfig 0.23-1 (base-devel)
+> A system for managing library compile/link flags
+> ( /usr/bin/pkg-config )}}}
+```

@@ -1,0 +1,30 @@
+﻿|[官方FTP地址](ftp://ftp.archlinux.org/)|[AUR](http://aur.archlinux.org/)|[中文Wiki](http://wiki.archlinux.org/index.php/Category:%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)|[LinuxSir 讨论区](http://www.linuxsir.org/bbs/forumdisplay.php?s=3b9489c8a372a90c0e52f0cdbfe23a99&f=96)|
+|:------------------------------------------|:-------------------------------|:----------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------|
+
+## Arch Linux ##
+
+  * [Archlinux 的灵魂 (1)](http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs.html) [(2)](http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-2.html) [(3)](http://linuxtoy.org/archives/archlinux-pkgbuild-aur-and-abs-3.html)
+    1. [pacman](pacman.md)--包管理工具 [manpage](http://www.archlinux.org/pacman/)
+    1. [PKGBUILD](#PKGBUILD.md)
+    1. [ABS](#ABS.md)
+
+#### 安装指南 ####
+  * [图解光盘安装过程](http://docs.google.com/fileview?id=0BwS1282BBrHnZjQ2M2EwNmItM2MxNC00NDY0LWEyYzEtMjg5ZmFlNjhjYWQ1&hl=zh_CN) [>>下载<<](http://docs.google.com/uc?export=download&id=0BwS1282BBrHnZjQ2M2EwNmItM2MxNC00NDY0LWEyYzEtMjg5ZmFlNjhjYWQ1) --虽然版本比较老，但是还是有参考价值的
+  * [个人的Arch Linux 安装笔记和步骤简述----20080126更新](Install_cwjiof.md)
+  * [打造完美的 Linux 桌面 — Archlinux 2007.08-2 (1)](http://linuxtoy.org/archives/the-perfect-linux-desktop-arch-linux-2007-08-2-1.html) [(2)](http://linuxtoy.org/archives/openbox-getting-started-guide-2.html) [(3)](http://linuxtoy.org/archives/openbox-getting-started-guide-3.html) [(4)](http://linuxtoy.org/archives/openbox-getting-started-guide-4.html) [(5)](http://linuxtoy.org/archives/openbox-getting-started-guide-5.html) [PDF](http://docs.google.com/fileview?id=0BwS1282BBrHnYzljMjgwYWQtOWM4OC00ODEzLTgxZWQtNjFhNTVhNzRmNDBh&hl=zh_CN) [>>下载<<](http://docs.google.com/uc?export=download&id=0BwS1282BBrHnYzljMjgwYWQtOWM4OC00ODEzLTgxZWQtNjFhNTVhNzRmNDBh)
+  * [基于2009.08的安装指南](http://docs.google.com/fileview?id=0BwS1282BBrHnYTE4ZDljYTItNjFiNy00N2U0LTk5M2UtYmI3YjMyZGYzM2Rj&hl=zh_CN) [>>下载<<](http://docs.google.com/uc?export=download&id=0BwS1282BBrHnYTE4ZDljYTItNjFiNy00N2U0LTk5M2UtYmI3YjMyZGYzM2Rj)
+  * Wiki上关于安装的文章
+    * [Arch 新手安装指南](http://wiki.archlinux.org/index.php/Arch_%E6%96%B0%E6%89%8B%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+    * [Arch Linux 快速安装指南](http://wiki.archlinux.org/index.php/Arch_Linux_%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+    * [Arch 官方安装指南](http://wiki.archlinux.org/index.php/Arch_%E5%AE%98%E6%96%B9%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)_(Deprecated))
+    * [ArchLinux安装完后的小技巧](http://wiki.archlinux.org/index.php/ArchLinux%E5%AE%89%E8%A3%85%E5%AE%8C%E5%90%8E%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
+|[base](base.md)|[base-devel](base_devel.md)|
+|:--------------|:--------------------------|
+
+#### ABS ####
+```
+sudo pacman -S abs
+sudo abs
+```
+
+#### PKGBUILD ####

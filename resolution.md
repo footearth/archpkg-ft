@@ -1,0 +1,84 @@
+控制台及桌面环境分辨率配置
+
+## framebuffer ##
+
+### Virtual Box 支持 ###
+
+> CMD 到 Virtual Box 的安装目录
+
+```
+vboxmanage setextradata "Arch" "CustomVideoMode1" "1680x1050x32"
+```
+
+### hwinfo ###
+
+```
+pacman -S hwinfo
+
+sudo hwinfo --framebuffer | grep Mode
+```
+
+### vbetest ###
+
+> 要使用的分辨率前的数字加上512即为VGA参数值 `/boot/grub/menu.lst`
+
+```
+pacman -S lrmi
+
+sudo vbetest
+```
+
+### Uvesafb ###
+
+> [参考 <<Thinkpad X200上使Archlinux的framebuffer支持宽屏分辨率>> from:牧马志 Lenin's Blog](http://sinolog.it/?p=846)
+
+```
+#去除 /boot/grub/menu.lst 中vga参数
+
+#安装一个Uvesafb要用到的守护进程v86d
+sudo tupac -S v86d
+
+#修改"/etc/mkinitcpio.conf"在"HOOKS"里的"udev"后面加上"v86d"
+sudo vim /etc/mkinitcpio.conf
+HOOKS="base udev v86d autodetect pata scsi sata filesystems"
+
+#修改"/etc/modprobe.d/uvesafb",将options那行改为"options uvesafb mode_option=1280×800-32 scroll=ywrap"
+sudo vim /etc/modprobe.d/uvesafb
+options uvesafb mode_option=1680x1050-32 scroll=ywrap
+
+mkinitcpio -p kernel26
+```
+
+## xrandr ##
+
+### Virtual Box 支持 ###
+
+> 安装显卡驱动,加载增强功能镜像文件
+
+```
+#安装依赖 gksu
+sudo pacman -S gksu
+
+#使用官方自带安装脚本
+mount /dev/cdrom0 /media/cd
+cd /media/cd
+sudo . autorun.sh
+```
+
+### xrandr ###
+
+```
+
+>> cvt 1680 1050
+# 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz
+Modeline "1680x1050_60.00"  146.25  1680 1784 1960 2240  1050 1053 1059 1089 -hsync +vsync
+
+#新模式
+xrandr --newmode 1680x1050_60.00 146.25 1680 1784 1960 2240 1050 1053 1059 1089 -hsync +vsync
+#增加模式
+xrandr --addmode VBOX1 1680x1050_60.00
+#应用模式
+xrandr --output VBOX1 --mode 1680x1050_60.00
+#删除模式
+xrandr --rmmode 1680x1050_60.00
+```

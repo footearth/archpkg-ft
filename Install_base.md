@@ -1,0 +1,182 @@
+## 安装基本系统 ##
+
+### 光碟安装 ###
+
+### U盘安装 ###
+
+```
+dd if=<imagefile> of=/dev/<yourdevice> bs=1M
+```
+
+### grub2 ###
+
+```
+menuentry "Windows XP" {
+set root=(hd0,1)
+chainloader +1
+}
+```
+
+## 添加用户 ##
+
+  * add users
+```
+#!/bin/bash
+
+useradd -mG users,audo,optical,storage,wheel -s /bin/bash footearth
+```
+  * sudo
+```
+visudo
+footearth ALL=(ALL) NOPASSWD: SETENV:ALL
+```
+```
+#!/bin/bash
+
+chmod +w /etc/suders
+sed '/^root/a\
+footearth ALL=(ALL) NOPASSWD: SETENV:ALL' /etc/sudoers > /tmp/sudoers
+mv /tmp/sudoers /etc/sudoers
+chmod 0440 /etc/sudoers
+```
+
+## 安装包管理增强工具 yaourt & tupac ##
+
+```
+XferCommand = /usr/bin/axel -o %o %u
+
+vi /etc/pacman.d/mirrorlist
+
+[archlinuxfr]
+Server = http://repo.archlinux.fr/i686
+
+sudo pacman -Sy yaourt
+sudo yaourt -S tupac
+```
+
+## 安装其他必需包 ##
+
+  * bash-completion tree
+  * dbus hal ntfs-3g
+  * unrar unzip p7zip upx
+  * axel
+  * perl php python ruby jdk lua gcc gdb make cmake sqlite3 mysql subversion
+  * gtk2-perl zenity wxgtk boost wxpython
+  * alsa-tuils
+  * xf86-video-intel
+  * Virtual Box 显卡驱动
+    * gksu
+  * wqy-bitmapfont wqy-zenhei ttf-ms-fonts
+  * 
+  * xorg libgl mesa
+  * gnome-themes gnome-icon-theme gtk-rezlooks-engine gtk-xfce-engine nimbus
+  * openbox obconf obmenu lxappearance lxrandr lxpanel lxtask pcmanfm
+  * tilda lilyterm
+  * vim gvim
+  * firefox firefox-i18n smplayer gecko-mediaplayer
+  * fcitx
+  * 
+  * rdesktop xcompmgr gmrun gvolwheel aumix-gtk cpu-g gnome-device-manager convmv sopcast scrot
+
+## 服务 ##
+
+  * telnet/ftp 服务
+    * puref-tpd lftp xinetd telnet-bsd
+  * web 服务器
+```
+tupac -S nginx spawn-fcgi php-cgi fcgi perl-cgi
+spawn-fcgi 守护 php-cgi -- 
+/usr/bin/spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u http -g http -f /usr/bin/php-cgi 
+```
+
+  * 
+
+## 其他应用软件站 ##
+
+  * 电子书 图像 流程图
+    * chmsee evince acroread apvlv
+    * gqview gthumb mirage comix gcolor2 gsnapshot
+    * freemind xmind dia
+    * scribes gedit
+    * antiword catdoc abiword gnumeric
+
+## 软件应用技巧 ##
+
+  * freemind 乱码问题
+```
+sudo mkdir -p /opt/java/jre/lib/fonts/fallbak
+cd /opt/java/jre/lib/fonts/fallbak
+sudo ln -s ~/.fonts/simsun.ttc ./
+```
+  * stardict 启动报错
+```
+sudo mv /usr/lib/stardict/plugins/stardict_spell.so{,.bak}
+```
+
+
+## 其他 ##
+
+```
+# Panel
+# lxpanel pypanel tint2)
+
+# 运行
+# gmrun grun dmenu
+
+# 终端
+# tilda lilyterm
+
+# 压缩/解压缩
+# unrar unzip p7zip
+# *aur/peazip-portable-gtk2
+
+# 下载工具
+# wget curl
+# axel aria2c
+# multiget mldonkey prozilla
+
+# 编辑工具
+# vim gvim ctags cscope
+# mousepad leafpad 
+# scribes gedit
+# geany madedit editra peppy
+
+# 笔记软件
+# *xpad *zim *tomboy *gnote *basket *Kjots *Gjots2 *KnowIt
+
+# 浏览器
+# firefox firefox-i18n flashplugin
+# *opera 
+# gconf chromium-browers
+
+# 网页开发工具
+# bluefish
+
+# 输入法
+# fcitx
+# *ibus *ibus-pinyin *ibus-table
+
+# 书籍浏览(chm/pdf)
+# chmsee
+# *xchm
+# evince acroread acroread9-fonts
+# *apvlv 
+
+# 影音播放
+# smplayer sopcast moc moc-tray lrcdis
+# mpd mpc ncmpc gmpc sonata
+
+# 流程图/脑图
+# freemind xmind dia
+
+# 看图工具
+# gpicview
+# *gqview *gthumb *mirage *comix *pho *f-spot
+# gcolor2 gsnapshot
+# *gpick *shutter
+
+# 其他
+# (Gmail) checkgmail
+# (中国象棋)gmchess *amsn
+# (apache+php傻瓜集成环境)lampp
+```

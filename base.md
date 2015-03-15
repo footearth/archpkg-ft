@@ -1,0 +1,367 @@
+﻿
+```
+    pacman -Ql pkgname | grep bin/
+```
+
+Arch Linux 安装光盘中 base 包组中 包含如下99个包:
+
+```
+core/readline 6.0.004-1 (base)
+    GNU readline library
+    ( /etc/inputrc )
+core/bash 4.0.035-1 (base)
+    Linux 默认 Shell
+    The GNU Bourne Again shell
+    ( /bin/bash bashbug sh)
+core/dash 0.5.5.1-2 (base)
+    A POSIX compliant shell that aims to be as small as possible
+    ( /usr/bin/dash )
+```
+
+```
+core/binutils 2.20-2 (base)
+    GNU binutils: 一组开发工具，包括连接器，汇编器和其他用于目标文件和档案的工具。
+    A set of programs to assemble and manipulate binary and object files
+    ( /usr/bin/addr2line ar as c++filt gprof ld nm objcopy
+    objdump ranlib readelf size strings strip )
+core/coreutils 7.6-1 (base)
+    The basic file, shell and text manipulation utilities of the GNU operating system
+    ( /bin
+    cat chgrp chmod chown cp cut date dd df dir dircolors du echo
+    false install ln ls mkdir mkfifo mknod mv pwd readlink rm
+    rmdir shred sleep stty su sync touch tr true uname vdir
+      /usr/bin
+    [ base64 basename chcon cksum comm csplit dirname env expand
+    expr factor fmt fold head hostid id join link logname md5sum
+    mktemp nice nl nohup od paste pathchk pinky pr printenv printf
+    ptx runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum
+    shuf sleep sort split stat stdbuf sum tac tail tee test timeout
+    truncate tsort tty unexpand uniq unlink users wc who whoami yes
+      /usr/sbin/chroot )
+core/util-linux-ng 2.16-1 (base)
+    Miscellaneous system utilities for Linux
+    ( /bin/arch dmesg more mount umount
+      /sbin/agetty blkid blockdev cfdisk ctrlaltdel fdisk
+    findfs fsck fsck.cramfs fsck.minix fsck.static hwclock
+    losetup mkfs mkfs.bfs mkfs.cramfs mkfs.minix mkswap
+    pivot_root raw sfdisk swapoff swapon switch_root
+      /usr/bin/cal chkdupexe chrt col colcrt colrm column
+    cytune ddate flock getopt hexdump i386 ionice ipcmk
+    ipcrm ipcs isosize line linux32 linux64 logger look
+    lscpu mcookie namei pg rename renice rev script
+    scriptreplay setarch setsid setterm tailf taskset
+    ul uuidgen whereis write
+      /usr/sbin/fdformat ldattach ramsize rdev readprofile
+    rootflags rtcwake tunelp uuidd vidmode )
+core/less 436-1 (base)
+    A terminal based program for viewing text files
+core/which 2.20-1 (base)
+    A utility to show the full path of commands
+core/mlocate 0.22.2-2 (base)
+    文件管理
+    Faster merging drop-in for slocate
+    ( /usr/bin/locate slocate updatedb )
+core/findutils 4.4.2-1 (base)
+    查找工具
+    GNU utilities to locate files
+    ( /usr/bin/find oldfind xargs )
+core/grep 2.5.4-3 (base)
+    A string search utility
+core/sed 4.2.1-1 (base)
+    GNU stream editor
+core/gawk 3.1.7-1 (base)
+    Gnu version of awk
+core/diffutils 2.8.1-6 (base)
+    Utility programs used for creating patch files
+    ( /usr/bin/cmp diff diff3 sdiff )
+core/file 5.03-2 (base)
+    检查文件类型
+    File type identification utility
+    ( /usr/bin/file )
+core/perl 5.10.1-5 (base)
+    Practical Extraction and Report Language
+core/pcre 8.00-1 (base)
+    Perl兼容正则表达式库
+```
+
+```
+core/groff 1.20.1-3 (base)
+    格式化文本系统
+    GNU troff text-formatting system
+core/texinfo 4.13a-3 (base)
+    Utilities to work with and produce manuals, ASCII text, and on-line documentation from a single source file
+    ( /usr/bin/info infokey install-info makeinfo
+    pdftexi2dvi texi2dvi texi2pdf texindex )
+core/gettext 0.17-3 (base)
+    GNU i18n 套件
+    GNU internationalization library
+core/ncurses 5.7-2 (base)
+    System V Release 4.0 curses emulation library
+    ( /bin/tput
+      /usr/bin/captoinfo clear infocmp infotocap
+    ncursesw5-config reset tic toe tset )
+core/dialog 1.1_20080819-3 (base)
+    安装系统过程中蓝色的交互界面就是它做的
+    A tool to display dialog boxes from shell scripts
+    ( /usr/bin/dialog )
+```
+
+```
+core/cpio 2.10-1 (base)
+    cpio 归档工具
+    A tool to copy files into or out of a cpio or tar archive
+    ( /bin/cpio )
+core/gen-init-cpio 2.6.17-3 (base)
+    Program to compress initramfs images
+    ( /sbin/gen_init_cpio)
+core/libarchive 2.7.1-1 (base)
+    library that can create and read several streaming archive formats
+    ( /usr/bin/bsdcpio bsdtar)
+core/gzip 1.3.13-1 (base)
+    GNU compression utility
+core/bzip2 1.0.5-5 (base)
+    A high-quality data compression program
+    ( /bin/bunzip2 bzcat bzip2 bzip2recover
+      /usr/bin/bzdiff bzgrep bzmore )
+core/tar 1.22-1 (base)
+    Utility used to store, backup, and transport files
+core/wget 1.12-1 (base)
+    A network utility to retrieve files from the Web
+```
+
+```
+core/db 4.8.24-1 (base)
+    伯克利 数据库
+    The Berkeley DB embedded database system
+    ( /usr/bin
+    db_archive db_checkpoint db_deadlock db_dump db_hotbackup db_load
+    db_printlog db_recover db_sql db_stat db_upgrade db_verify )
+core/gdbm 1.8.3-6 (base)
+    GNU database library
+```
+
+```
+core/man-db 2.5.6-1 (base)
+    A utility for reading man pages
+    ( /usr/bin/apropos catman convert-mans
+    lexgrog man mandb manpath whatis )
+core/man-pages 3.23-1 (base)
+    Linux man pages
+```
+
+```
+core/grub 0.97-16 (base)
+    A GNU multiboot boot loader
+core/mkinitcpio 0.5.26-1 (base)
+    /boot/kernel26.img
+    Advanced, modular initramfs image creation utility
+core/module-init-tools 3.11.1-1 (base)
+    utilities needed by Linux systems for managing loadable kernel modules
+    ( /bin/lsmod
+      /sbin/depmod insmod modinfo modprobe )
+core/klibc-module-init-tools 3.8-1 (base)
+    Utilities for inserting and removing modules from the Linux kernel
+core/procps 3.2.8-1 (base)
+    Utilities for monitoring your system and processes on your system
+    ( /bin/kill ps
+      /sbin/sysctl
+      /usr/bin/free pgrep pkill pmap pwdx skill
+    slabtop snice tload top uptime vmstat w watch )
+core/psmisc 22.8-1 (base)
+    Miscellaneous procfs tools
+    ( /usr/bin/fuser killall peekfd pstree pstree.x11 )
+core/dcron 3.2-4 (base)
+    Dillon_s Cron Daemon
+    ( /usr/bin/crontab )
+core/shadow 4.1.4.2-1 (base)
+    Shadow password file utilities
+    ( /bin/groups login
+      /sbin/nologin
+      /usr/bin/chage chfn chsh expiry faillog gpasswd
+    lastlog newgrp passwd sg
+      /usr/sbin/adduser chgpasswd chpasswd groupadd groupdel groupmems
+    groupmod grpck grpconv grpunconv logoutd newusers pwck pwconv
+    pwunconv useradd userdel usermod vigr vipw)
+core/sysvinit 2.86-5 (base)
+    Linux System V Init
+    ( /bin/mountpoint pidof
+      /sbin/bootlogd halt init killall5 poweroff
+    reboot runlevel shutdown sulogin telinit
+      /usr/bin/last lastb mesg utmpdump wall
+core/tzdata 2009s-1 (base)
+    Sources for time zone and daylight saving time data
+    ( /usr/bin/tzdata
+      /usr/sbin/zdump zic)
+```
+
+```
+core/nano 2.0.9-2 (base)
+    Pico editor clone with enhancements
+core/vi 050325-1 (base)
+    The original ex/vi text editor.
+core/logrotate 3.7.8-1 (base)
+    Rotates system logs automatically
+    ( /sbin/logrotate )
+core/syslog-ng 3.0.4-1 (base)
+    Next-generation syslogd with advanced networking and filtering capabilities
+    ( /usr/bin/loggen
+      /usr/sbin/syslog-ng )
+core/mailx 8.1.1-7 (base)
+    A commandline utility for sending email
+    ( /usr/bin/mail )
+```
+
+```
+Arch 系统相关
+core/filesystem 2009.07-1 (base)
+    这个应该是 Arch 特有的，用来安装系统文件
+    Base filesystem
+core/initscripts 2009.08-1 (base)
+    System initialization/bootup scripts
+core/licenses 2.5-1 (base)
+    The standard licenses distribution package
+core/pacman 3.3.3-1 (base)
+    A library-based package manager with dependency support
+core/pacman-mirrorlist 20090616-1 (base)
+    Arch Linux mirror list for use by pacman
+
+文件系统相关
+core/e2fsprogs 1.41.9-1 (base)
+    Linux文件系统工具
+    Ext2/3/4 filesystem utilities
+    ( /sbin/badblocks debugfs dumpe2fs e2fsck e2image e2label e2undo
+    fsck.ext2 fsck.ext3 fsck.ext4 fsck.ext4dev resize2fs tune2fs
+      /usr/bin/chattr compile_et lsattr mk_cmds
+      /usr/sbin/e2freefrag filefrag mklost+found)
+core/jfsutils 1.1.14-1 (base)
+    JFS filesystem utilities
+core/xfsprogs 3.0.5-1 (base)
+    XFS filesystem utilities
+core/reiserfsprogs 3.6.21-2 (base)
+    Reiserfs utilities
+core/lvm2 2.02.53-1 (base)
+    Logical Volume Manager 2 utilities
+
+库相关
+core/gcc-libs 4.4.2-3 (base)
+    Runtime libraries shipped by GCC for C and C++ languages
+core/glibc 2.11-1 (base)
+    GNU C Library
+core/zlib 1.2.3.3-3 (base)
+    A compression/decompression Library
+core/kernel-headers 2.6.31.5-1 (base)
+    Kernel headers sanitized for use in userspace
+core/kernel26 2.6.31.6-1 (base)
+    The Linux Kernel and modules
+core/kernel26-firmware 2.6.31-1 (base)
+    The included firmware files of the Linux Kernel
+core/klibc 1.5.15-3 (base)
+    A minimal libc made for early-userspace
+core/klibc-extras 2.5-4 (base)
+    Extra apps for klibc early-userspace
+core/libfetch 2.26-1 (base)
+    URL based download library
+core/libgpg-error 1.7-2 (base)
+    Support library for libgcrypt
+core/libpcap 1.0.0-1 (base)
+    A system-independent interface for user-level packet capture
+core/libusb 0.1.12-3 (base)
+    Library to enable user space application programs to communicate with USB devices
+core/lzo2 2.03-1 (base)
+    Portable lossless data compression library written in ANSI C
+core/popt 1.15-1 (base)
+    A commandline option parser
+
+硬盘相关
+core/hdparm 9.27-1 (base)
+    调整IDE硬盘参数
+    A shell utility for manipulating Linux IDE drive/driver parameters
+core/sdparm 1.04-1 (base)
+    An utility similar to hdparm but for SCSI devices
+core/mdadm 2.6.9-1 (base)
+    A tool for managing/monitoring Linux md device arrays, also known as Software RAID
+    ( /sbin/mdadm )
+
+网络相关
+core/net-tools 1.60-14 (base)
+    网络工具
+    Configuration tools for Linux networking
+    ( /bin
+    dnsdomainname domainname hostname netstat
+    nisdomainname ypdomainname
+      /sbin
+    arp ifconfig ipmaddr iptunnel mii-tool
+    nameif plipconfig rarp route slattach
+    )
+core/ppp 2.4.4-9 (base)
+    A daemon which implements the PPP protocol for dial-up networking
+core/rp-pppoe 3.10-1 (base)
+    Roaring Penguin_s Point-to-Point Protocol over Ethernet client
+core/dhcpcd 5.1.3-1 (base)
+    RFC2131 compliant DHCP client daemon
+    ( /sbin/dhcpcd /usr/sbin/dhcpcd )
+core/iputils 20071127-2 (base)
+    IP Configuration Utilities (and Ping)
+core/wpa_supplicant 0.6.9-2 (base)
+    A utility providing key negotiation for WPA wireless networks
+core/pcmciautils 015-2 (base)
+    无线网卡？
+    Utilities for inserting and removing PCMCIA cards
+    A library that implements Perl 5-style regular expressions
+core/sysfsutils 2.1.0-5 (base)
+    System Utilities Based on Sysfs
+    ( /usr/bin/dlist_test get_device get_driver get_module systool )
+core/tcp_wrappers 7.6-10 (base)
+    防火墙
+    Monitors and Controls incoming TCP connections
+
+权限相关
+core/acl 2.2.48-1 (base)
+    ACL (Access Control Lists) 访问控制列表
+    Library for filesystem ACL support 
+    ( /usr/bin
+    chacl getfacl setfacl )
+core/attr 2.4.44-1 (base)
+    Extended attribute support library for ACL support
+    ( /usr/bin
+    attr getfattr setfattr )
+core/pam 1.1.0-1 (base)
+    PAM (Pluggable Authentication Modules) library
+
+加密相关
+core/cracklib 2.8.13-2 (base)
+    Password Checking Library
+    ( /usr/sbin
+    cracklib-check cracklib-format cracklib-packer
+    cracklib-unpacker create-cracklib-dict )
+core/cryptsetup 1.0.7-1 (base)
+    Userspace setup tool for transparent encryption of block devices using the Linux 2.6 cryptoapi
+core/device-mapper 2.02.53-1 (base)
+    Device mapper userspace library and tools
+core/libgcrypt 1.4.4-2 (base)
+    a general purpose crypto library based on the code used
+
+硬件相关 HAL d-bus udev
+core/pciutils 3.1.4-1 (base)
+    PCI bus configuration space access library and tools
+    ( /usr/sbin/lspci setpci update-pciids )
+core/procinfo 19-3 (base)
+    Displays useful information from /proc
+    ( /usr/bin/lsdev procinfo socklist )
+core/udev 146-2 (base)
+    The userspace dev tools (udev)
+core/dbus-core 1.2.16-1 (base)
+    -- dbus dbus-core dbus-glib dbus-python
+    Freedesktop.org message bus system
+    ( /usr/bin/dbus-cleanup-sockets dbus-daemon
+    dbus-monitor dbus-send dbus-uuidgen )
+core/klibc-udev 141-3 (base)
+    udev compiled for klibc
+core/usbutils 0.86-2 (base)
+    USB Device Utilities
+core/kbd 1.15-2 (base)
+    包含键盘映射表和键盘工具
+    Keytable files and keyboard utilities
+core/klibc-kbd 1.15.20080312-10 (base)
+    Keytable files and keyboard utilities
+```
